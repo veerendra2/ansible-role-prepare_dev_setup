@@ -1,9 +1,9 @@
 ---
 - name: Include OS-specific variables
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: "{{ ansible_distribution }}.yml"
 
 - name: Include tasks for specific OS
-  include_tasks: "{{ ansible_system }}-common.yml"
+  include_tasks: "{{ ansible_distribution }}.yml"
 
 - name: Include common tasks
   include_tasks: common.yml

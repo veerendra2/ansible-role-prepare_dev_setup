@@ -13,10 +13,12 @@ galaxy_info:
         - jammy
     - name: MacOS
       versions:
-        - all
+        - Ventura
   galaxy_tags:
     - system
-    - containers
     - docker
     - orchestration
     - server
+    - ubuntu
+    - macos
+    - automation
