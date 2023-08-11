@@ -1,0 +1,16 @@
+---
+pip_pkgs:
+  - requests
+  - thefuck
+  - frida-tools
+  - beautifulsoup4
+  - youtube_dl
+  - ansible
+  - scapy
+  - docker-compose
+  - tldr
+
+git_projects:
+  dotfiles: "git@github.com:veerendra2/dotfiles.git"
+
+github_username_keys: ""

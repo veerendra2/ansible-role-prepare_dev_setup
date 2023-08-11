@@ -1,0 +1,10 @@
+---
+user_home: "{{ lookup('env', 'HOME') }}"
+user_name: "{{ ansible_env.USER }}"
+
+# Docker
+enable_docker_swarm_metrics: false
+enable_docker_live_restore: true
+enable_userns_remap: false
+enable_docker_swarm_mode: false
+docker_swarm_advertise_addr: ""
