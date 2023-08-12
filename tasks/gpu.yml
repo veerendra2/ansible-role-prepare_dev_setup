@@ -1,7 +1,7 @@
 ---
 # TODO https://github.com/veerendra2/my-utils/blob/master/scripts/graphic_drivers_install.sh
 - name: Install necessary packages
-  apt:
+  ansible.builtin.apt:
     name:
       - ubuntu-drivers-common
       - "nvidia-cuda-*"

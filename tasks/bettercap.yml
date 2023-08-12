@@ -1,6 +1,6 @@
 ---
 - name: Create temporary bettercap build directory
-  tempfile:
+  ansible.builtin.tempfile:
     state: directory
     suffix: build
   register: tempdir
@@ -21,7 +21,7 @@
   register: output
 
 - name: Display bettercap version
-  debug:
+  ansible.builtin.debug:
     msg: "{{ output.stdout }}"
   when: output.rc == 0
 

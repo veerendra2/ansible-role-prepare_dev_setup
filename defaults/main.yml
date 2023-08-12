@@ -5,7 +5,11 @@ enable_userns_remap: false
 enable_docker_swarm_mode: false
 docker_swarm_advertise_addr: ""
 
+# clone your git repos
 git_projects:
   dotfiles: "git@github.com:veerendra2/dotfiles.git"
 
-github_username_keys: ""
+github_username_keys: "https://github.com/veerendra2.keys"
+
+# this option will install dotfiles from https://github.com/veerendra2/dotfiles.git
+install_dotfiles: true

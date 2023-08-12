@@ -29,3 +29,4 @@
   loop: "{{ lookup('dict', git_projects) }}"
 
 - import_tasks: dotfiles.yml
+  when: install_dotfiles

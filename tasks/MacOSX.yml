@@ -1,35 +1,37 @@
 ---
 - name: Fetch homebrew version
-  shell: brew --version
+  ansible.builtin.command: brew --version
   register: output
+  changed_when: false
 
 - name: Display homebrew version
-  debug:
+  ansible.builtin.debug:
     msg: "{{ output.stdout }}"
 
 - name: Change ownership for `brew --prefix`
-  shell: "chown -R {{ user_name }} $(brew --prefix)/*"
-  become: yes
+  ansible.builtin.command: "chown -R {{ user_name }} $(brew --prefix)/*"
+  become: true
+  changed_when: false
 
 - name: Update Homebrew
-  homebrew:
-    update_homebrew: yes
+  community.general.homebrew:
+    update_homebrew: true
 
 - name: Upgrade homebrew core packages
-  homebrew:
-    upgrade_all: yes
+  community.general.homebrew:
+    upgrade_all: true
 
 - name: Upgrade homebrew cask packages
-  homebrew_cask:
-    upgrade_all: yes
+  community.general.homebrew_cask:
+    upgrade_all: true
 
 - name: Install homebrew core packages
-  homebrew:
+  community.general.homebrew:
     name: "{{ brew_pkgs }}"
     state: present
 
 - name: Install homebrew cask packages
-  homebrew_cask:
+  community.general.homebrew_cask:
     name: "{{ brew_cask_apps }}"
     state: present
     install_options:
