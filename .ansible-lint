@@ -1,5 +1,6 @@
 skip_list:
   - 'yaml'
   - 'role-name'
+  - 'package-latest'
 
 verbosity: 1

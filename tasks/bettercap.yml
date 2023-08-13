@@ -6,14 +6,15 @@
   register: tempdir
 
 - name: Build bettercap
-  shell: |
+  ansible.builtin.shell: |
     go env -w GO111MODULE=off
     go get -u github.com/bettercap/bettercap
+  changed_when: false
   environment:
     GOPATH: "{{ tempdir.path }}"
 
 - name: Install bettercap
-  shell: |
+  ansible.builtin.shell: |
     mv {{ tempdir.path }}/bin/bettercap /usr/local/bin/
     rm -rf {{ tempdir.path }}
     bettercap -version
@@ -27,7 +28,7 @@
 
 # https://www.bettercap.org/usage/webui/
 - name: Install bettercap caplets
-  shell: bettercap -eval "caplets.update; ui.update; q"
+  ansible.builtin.command: bettercap -eval "caplets.update; ui.update; q"
   when: output.rc == 0
-  ignore_errors: true
+  failed_when: false
   become: true

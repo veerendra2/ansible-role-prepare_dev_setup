@@ -5,9 +5,9 @@
     update_cache: true
   become: true
 
-- name: Install necessary packages
+- name: Install packages
   ansible.builtin.apt:
-    name: "{{ pkgs }}"
+    name: "{{ cli.pkgs }}"
     state: latest
     update_cache: true
     install_recommends: false
@@ -16,31 +16,38 @@
 
 - name: Install snap packages
   community.general.snap:
-    name: "{{ snaps }}"
+    name: "{{ cli.snap_pkgs }}"
     classic: true
   become: true
 
-- block:
+- name: Docker block
+  block:
     - name: Check docker installed
       ansible.builtin.command: docker --version
       register: output
       changed_when: false
-    - ansible.builtin.debug:
+
+    - name: Display docker version
+      ansible.builtin.debug:
         msg: "{{ output.stdout }}"
   rescue:
     - name: Install and configure docker
-      include_tasks: docker.yml
+      ansible.builtin.include_tasks: docker.yml
+      become: yes
 
-- block:
+- name: Bettercap block
+  block:
     - name: Check bettercap installed
       ansible.builtin.command: bettercap --version
       register: output
       changed_when: false
-    - ansible.builtin.debug:
+
+    - name: Display bettercap version
+      ansible.builtin.debug:
         msg: "{{ output.stdout }}"
   rescue:
     - name: Install bettercap
-      include_tasks: bettercap.yml
+      ansible.builtin.include_tasks: bettercap.yml
 
 - name: Check Nvidia card present
   ansible.builtin.command: lspci | grep -i --color 'vga\|3d\|2d' | grep -i NVIDIA
@@ -48,8 +55,10 @@
   changed_when: false
   ignore_errors: true
 
-- block:
-    - ansible.builtin.debug:
+- name: Install nvidia drivers block
+  block:
+    - name: Display nvidia pci output
+      ansible.builtin.debug:
         msg: "{{ output.stdout }}"
 
     - name: Download custom script
@@ -59,6 +68,6 @@
         mode: 0775
 
     - name: Install nvidia drivers, hashcat and aircrack-ng
-      shell: /tmp/gpu_utils_script.sh
+      ansible.builtin.command: /tmp/gpu_utils_script.sh
       become: true
   when: output.rc == 0

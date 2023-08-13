@@ -1,32 +1,33 @@
 ---
 - name: Set authorized keys taken from url
-  authorized_key:
+  ansible.posix.authorized_key:
     user: "{{ run_user }}"
     state: present
     key: "{{ github_username_keys }}"
   when: github_username_keys != ""
 
 - name: Generate ssh key pair
-  openssh_keypair:
+  community.crypto.openssh_keypair:
     path: "{{ [ansible_env.HOME, '.ssh', 'id_rsa'] | path_join }}"
     force: no
 
 - name: Install pypi packages
-  pip:
+  ansible.builtin.pip:
     name: "{{ pypi }}"
     state: present
     executable: "pip3"
 
 - name: Create projects directory
-  file:
+  ansible.builtin.file:
     name: "{{ user_home }}/projects"
     state: directory
 
 - name: Cloning git repositories
-  git:
+  ansible.builtin.git:
     repo: "{{ item.value }}"
     dest: "{{ user_home }}/projects/{{ item.key }}"
   loop: "{{ lookup('dict', git_projects) }}"
 
-- import_tasks: dotfiles.yml
+- name: Run dotfiles install tasks
+  ansible.builtin.import_tasks: dotfiles.yml
   when: install_dotfiles
