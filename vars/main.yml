@@ -10,7 +10,6 @@ pip_pkgs:
   - docker-compose
   - tldr
   - ansible-lint
-  - yamllint
 
 user_home: "{{ ansible_env.HOME }}"
 user_name: "{{ ansible_env.USER }}"

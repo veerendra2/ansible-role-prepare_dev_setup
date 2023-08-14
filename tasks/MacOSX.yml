@@ -8,8 +8,16 @@
   ansible.builtin.debug:
     msg: "{{ output.stdout }}"
 
-- name: Change ownership for `brew --prefix`
-  ansible.builtin.command: "chown -R {{ user_name }} $(brew --prefix)/*"
+- name: Fetch `brew --prefix` path
+  ansible.builtin.command: brew --prefix
+  register: brew_path
+  changed_when: false
+
+- name: Change ownership for `brew --prefix` path
+  ansible.builtin.file:
+  owner: "{{ user_name }}"
+  recurse: true
+  path: "{{ brew_path.stdout }}/*"
   become: true
 
 - name: Update Homebrew

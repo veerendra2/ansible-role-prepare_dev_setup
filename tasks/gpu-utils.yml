@@ -1,0 +1,40 @@
+---
+# TODO https://github.com/veerendra2/my-utils/blob/master/scripts/graphic_drivers_install.sh
+- name: Install necessary packages
+  ansible.builtin.apt:
+    name: "{{ gpu_pkgs }}"
+    state: latest
+    update_cache: yes
+    install_recommends: no
+    force_apt_get: yes
+  become: true
+
+- name: Install drivers
+  ansible.builtin.command: ubuntu-drivers autoinstall
+  become: true
+
+- name: Fetch hashcat project github api json
+  ansible.builtin.get_url:
+    url: https://api.github.com/repos/hashcat/hashcat/releases/latest
+    dest: /tmp/github-api-hashcat.json
+    mode: "0776"
+
+- name: Download latest hashcat binaries
+  ansible.builtin.get_url:
+    url: "{{ lookup('file','/tmp/github-api-hashcat.json') | from_json | json_query('tarball_url') }}"
+    dest: /tmp/hashcat.tar
+    mode: '0776'
+
+- name: Unarchive hashcat tarball
+  ansible.builtin.unarchive:
+    src: /tmp/hashcat.tar
+    dest: /opt
+    remote_src: yes
+    owner: "{{ user_name }}"
+  become: yes
+
+- name: Download rockyou.txt wordlists
+  ansible.builtin.get_url:
+    url: http://scrapmaker.com/data/wordlists/dictionaries/rockyou.txt
+    dest: /opt/rockyou.txt
+    mode: '0776'

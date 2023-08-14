@@ -1,0 +1,19 @@
+gpu_pkgs:
+  - ubuntu-drivers-common
+  - "nvidia-cuda-*"
+  - autoconf
+  - automake
+  - libtool
+  - pkg-config
+  - libnl-3-dev
+  - libnl-genl-3-dev
+  - libssl-dev
+  - shtool
+  - rfkill
+  - zlib1g-dev
+  - libpcap-dev
+  - libsqlite3-dev
+  - libpcre3-dev
+  - libhwloc-dev
+  - libcmocka-dev
+  - aircrack-ng

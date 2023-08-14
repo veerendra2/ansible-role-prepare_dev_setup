@@ -1,6 +1,7 @@
 skip_list:
   - 'yaml'
   - 'role-name'
-  - 'package-latest'
+  #- 'package-latest'
+  - 'latest[git]'
 
 verbosity: 1

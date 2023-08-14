@@ -12,6 +12,7 @@ An ansible role to install necessary packages and configure my Ubuntu and MacOS.
 ```
 ### Variables
 ```yaml
+---
 enable_docker_swarm_metrics: false
 enable_docker_live_restore: true
 enable_userns_remap: false
@@ -20,10 +21,15 @@ docker_swarm_advertise_addr: ""
 
 # clone your git repos
 git_projects:
-  dotfiles: "git@github.com:veerendra2/dotfiles.git"
+  dotfiles: "https://github.com/veerendra2/dotfiles.git"
+  my-utils: "https://github.com/veerendra2/my-utils.git"
+  raspberrypi-homeserver: "https://github.com/veerendra2/raspberrypi-homeserver.git"
 
 github_username_keys: "https://github.com/veerendra2.keys"
 
 # this option will install dotfiles from https://github.com/veerendra2/dotfiles.git
 install_dotfiles: true
+
+# https://www.bettercap.org/
+install_bettercap: true
 ```

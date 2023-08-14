@@ -20,22 +20,17 @@
     classic: true
   become: true
 
-- name: Docker block
-  block:
-    - name: Check docker installed
-      ansible.builtin.command: docker --version
-      register: output
-      changed_when: false
+- name: Gather the package facts
+  ansible.builtin.package_facts:
+    manager: auto
 
-    - name: Display docker version
-      ansible.builtin.debug:
-        msg: "{{ output.stdout }}"
-  rescue:
-    - name: Install and configure docker
-      ansible.builtin.include_tasks: docker.yml
-      become: yes
+- name: Install and configure docker
+  ansible.builtin.include_tasks: docker.yml
+  become: yes
+  when: "'docker-ce-cli' not in ansible_facts.packages"
 
 - name: Bettercap block
+  when: install_bettercap
   block:
     - name: Check bettercap installed
       ansible.builtin.command: bettercap --version
@@ -49,13 +44,14 @@
     - name: Install bettercap
       ansible.builtin.include_tasks: bettercap.yml
 
-- name: Check Nvidia card present
+- name: Check nvidia pci
   ansible.builtin.command: lspci | grep -i --color 'vga\|3d\|2d' | grep -i NVIDIA
   register: output
   changed_when: false
   ignore_errors: true
 
 - name: Install nvidia drivers block
+  when: output.rc == 0
   block:
     - name: Display nvidia pci output
       ansible.builtin.debug:
@@ -70,4 +66,3 @@
     - name: Install nvidia drivers, hashcat and aircrack-ng
       ansible.builtin.command: /tmp/gpu_utils_script.sh
       become: true
-  when: output.rc == 0
