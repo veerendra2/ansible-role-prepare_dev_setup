@@ -24,9 +24,9 @@
   ansible.builtin.package_facts:
     manager: auto
 
-- name: Install and configure docker
+- name: Include docker tasks
   ansible.builtin.include_tasks: docker.yml
-  become: yes
+  become: true
   when: "'docker-ce-cli' not in ansible_facts.packages"
 
 - name: Bettercap block
@@ -41,7 +41,7 @@
       ansible.builtin.debug:
         msg: "{{ output.stdout }}"
   rescue:
-    - name: Install bettercap
+    - name: Include bettercap tasks
       ansible.builtin.include_tasks: bettercap.yml
 
 - name: Check nvidia pci
@@ -57,12 +57,7 @@
       ansible.builtin.debug:
         msg: "{{ output.stdout }}"
 
-    - name: Download custom script
+    - name: Include gpu utils tasks
       ansible.builtin.get_url:
-        url: "{{ gpu_utils_script }}"
-        dest: /tmp/gpu_utils_script.sh
-        mode: 0775
-
-    - name: Install nvidia drivers, hashcat and aircrack-ng
-      ansible.builtin.command: /tmp/gpu_utils_script.sh
+        ansible.builtin.include_tasks: gpu-utils.yml
       become: true

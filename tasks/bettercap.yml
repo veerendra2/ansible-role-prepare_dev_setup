@@ -18,7 +18,7 @@
     mv {{ tempdir.path }}/bin/bettercap /usr/local/bin/
     rm -rf {{ tempdir.path }}
     bettercap -version
-  become: yes
+  become: true
   register: output
 
 - name: Display bettercap version

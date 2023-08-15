@@ -1,5 +1,7 @@
 ---
-# TODO https://github.com/veerendra2/my-utils/blob/master/scripts/graphic_drivers_install.sh
+- name: Include gpu variables
+  ansible.builtin.include_vars: gpu.yml
+
 - name: Install necessary packages
   ansible.builtin.apt:
     name: "{{ gpu_pkgs }}"
@@ -9,7 +11,7 @@
     force_apt_get: yes
   become: true
 
-- name: Install drivers
+- name: Run `ubuntu-drivers autoinstall`
   ansible.builtin.command: ubuntu-drivers autoinstall
   become: true
 
@@ -25,15 +27,15 @@
     dest: /tmp/hashcat.tar
     mode: '0776'
 
-- name: Unarchive hashcat tarball
+- name: Unarchive hashcat tarball to `/opt`
   ansible.builtin.unarchive:
     src: /tmp/hashcat.tar
     dest: /opt
     remote_src: yes
     owner: "{{ user_name }}"
-  become: yes
+  become: true
 
-- name: Download rockyou.txt wordlists
+- name: Download rockyou.txt wordlists to `/opt`
   ansible.builtin.get_url:
     url: http://scrapmaker.com/data/wordlists/dictionaries/rockyou.txt
     dest: /opt/rockyou.txt
