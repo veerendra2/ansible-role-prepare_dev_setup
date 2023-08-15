@@ -2,7 +2,7 @@
 dependencies: []
 
 galaxy_info:
-  role_name: prepare-dev-setup
+  role_name: prepare_dev_setup
   author: veerendra2
   description: Prepares Development Setup
   license: "license (BSD, MIT)"

@@ -10,7 +10,7 @@
     install_recommends: no
     force_apt_get: yes
   become: true
-
+# TODO https://help.ubuntu.com/community/NvidiaDriversInstallation#NVIDIA_drivers_releases
 - name: Run `ubuntu-drivers autoinstall`
   ansible.builtin.command: ubuntu-drivers autoinstall
   become: true
@@ -23,7 +23,7 @@
 
 - name: Download latest hashcat binaries
   ansible.builtin.get_url:
-    url: "{{ lookup('file','/tmp/github-api-hashcat.json') | from_json | json_query('tarball_url') }}"
+    url: "{{ lookup('file', '/tmp/github-api-hashcat.json') | from_json | json_query('tarball_url') }}"
     dest: /tmp/hashcat.tar
     mode: '0776'
 

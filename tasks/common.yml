@@ -21,6 +21,7 @@
   ansible.builtin.file:
     name: "{{ user_home }}/projects"
     state: directory
+    mode: '0776'
 
 - name: Clone git repositories
   ansible.builtin.git:

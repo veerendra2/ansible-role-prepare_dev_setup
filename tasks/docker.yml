@@ -29,6 +29,8 @@
   ansible.builtin.template:
     src: templates/docker_daemon.json.j2
     dest: /etc/docker/daemon.json
+    group: docker
+    mode: '0640'
 
 - name: Enable docker swarm mode
   community.docker.docker_swarm:
