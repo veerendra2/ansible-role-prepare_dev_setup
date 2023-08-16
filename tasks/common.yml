@@ -9,7 +9,8 @@
 - name: Generate ssh key pair
   community.crypto.openssh_keypair:
     path: "{{ [user_home, '.ssh', 'id_rsa'] | path_join }}"
-    force: no
+    force: false
+    regenerate: never
 
 - name: Install pypi packages
   ansible.builtin.pip:
