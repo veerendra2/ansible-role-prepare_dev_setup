@@ -15,9 +15,9 @@
 
 - name: Change ownership for `brew --prefix` path
   ansible.builtin.file:
-  owner: "{{ user_name }}"
-  recurse: true
-  path: "{{ brew_path.stdout }}/*"
+    owner: "{{ user_name }}"
+    recurse: true
+    path: "{{ brew_path.stdout }}/*"
   become: true
 
 - name: Update Homebrew
@@ -43,3 +43,11 @@
     state: present
     install_options:
       - "appdir={{ brew_cask_appdir }}"
+
+- name: Install virtualbox for x86_64
+  homebrew_cask:
+    name: virtualbox
+    state: present
+    install_options:
+      - "appdir={{ brew_cask_appdir }}"
+  when: ansible_architecture == "x86_64"
