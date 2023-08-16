@@ -9,7 +9,6 @@ pip_pkgs:
   - scapy
   - docker-compose
   - tldr
-  - ansible-lint
 
 user_home: "{{ ansible_env.HOME }}"
 user_name: "{{ ansible_env.USER }}"

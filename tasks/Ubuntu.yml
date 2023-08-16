@@ -16,8 +16,11 @@
 
 - name: Install snap packages
   community.general.snap:
-    name: "{{ cli.snap_pkgs }}"
-    classic: true
+    name: "{{ item.key }}"
+    classic: "{{ item.value.classic }}"
+  loop: "{{ lookup('dict', cli.snap_pkgs) }}"
+  loop_control:
+    label: "{{ item.key }}"
   become: true
 
 - name: Gather the package facts
@@ -46,7 +49,8 @@
       ansible.builtin.include_tasks: bettercap.yml
 
 - name: Check nvidia pci
-  ansible.builtin.command: lspci | grep -i --color 'vga\|3d\|2d' | grep -i NVIDIA
+  ansible.builtin.shell: |
+    lspci | grep -i --color 'vga\|3d\|2d' | grep -i NVIDIA > /dev/null 2>&1
   register: output
   changed_when: false
   ignore_errors: true

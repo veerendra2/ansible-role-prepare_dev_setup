@@ -14,8 +14,9 @@
 - name: Install pypi packages
   ansible.builtin.pip:
     name: "{{ pip_pkgs }}"
-    state: present
-    executable: "pip3"
+    state: latest
+    extra_args: "--no-cache-dir --upgrade"
+    executable: pip3
 
 - name: Create projects directory
   ansible.builtin.file:
@@ -27,7 +28,10 @@
   ansible.builtin.git:
     repo: "{{ item.value }}"
     dest: "{{ user_home }}/projects/{{ item.key }}"
+    force: false
   loop: "{{ lookup('dict', git_projects) }}"
+  loop_control:
+    label: "{{ item.key }}"
   when: git_projects|length > 0
 
 - name: Run dotfiles install tasks

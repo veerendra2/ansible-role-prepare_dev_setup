@@ -2,13 +2,16 @@ cli:
   ppas:
   ppa_keys:
   snap_pkgs:
-    - bw
-    - ngrok
-    - kubectl
-    - jq
-    - yq
-    - minikube
-    - terraform
+    ngrok:
+      classic: false
+    kubectl:
+      classic: true
+    jq:
+      classic: false
+    yq:
+      classic: false
+    terraform:
+      classic: true
   pkgs:
     - systemtap
     - iotop

@@ -3,6 +3,7 @@
   ansible.builtin.git:
     repo: https://github.com/veerendra2/dotfiles.git
     dest: "{{ user_home }}/projects/dotfiles"
+    force: false
 
 - name: Find dotfiles
   ansible.builtin.find:
