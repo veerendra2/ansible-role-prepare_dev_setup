@@ -19,7 +19,7 @@
   ansible.builtin.get_url:
     url: https://api.github.com/repos/hashcat/hashcat/releases/latest
     dest: /tmp/github-api-hashcat.json
-    mode: "0776"
+    mode: '0776'
 
 - name: Download latest hashcat binaries
   ansible.builtin.get_url:

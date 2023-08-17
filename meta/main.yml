@@ -11,9 +11,9 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - jammy
-    - name: MacOS
+    - name: MacOSX
       versions:
-        - Ventura
+        - '13.5'
   galaxy_tags:
     - system
     - docker

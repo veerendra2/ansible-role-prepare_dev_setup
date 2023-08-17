@@ -45,7 +45,7 @@
       - "appdir={{ brew_cask_appdir }}"
 
 - name: Install virtualbox for x86_64
-  homebrew_cask:
+  community.general.homebrew_cask:
     name: virtualbox
     state: present
     install_options:

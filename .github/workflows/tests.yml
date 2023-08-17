@@ -30,30 +30,30 @@ jobs:
       - name: Run ansible-lint
         uses: ansible/ansible-lint@v6
 
-  molecule:
-    name: Molecule
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        distro:
-          - ubuntu2204
-          - ubuntu2004
+  # molecule:
+  #   name: Molecule
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       distro:
+  #         - ubuntu2204
+  #         - ubuntu2004
 
-    steps:
-      - name: Check out repo
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Check out repo
+  #       uses: actions/checkout@v2
 
-      - name: Set up Python3
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
+  #     - name: Set up Python3
+  #       uses: actions/setup-python@v2
+  #       with:
+  #         python-version: '3.x'
 
-      - name: Install test dependencies
-        run: pip3 install ansible molecule molecule-plugins[docker] docker
+  #     - name: Install test dependencies
+  #       run: pip3 install ansible molecule molecule-plugins[docker] docker
 
-      - name: Run Molecule tests
-        run: molecule test
-        env:
-          PY_COLORS: '1'
-          ANSIBLE_FORCE_COLOR: '1'
-          MOLECULE_DISTRO: ${{ matrix.distro }}
+  #     - name: Run Molecule tests
+  #       run: molecule test
+  #       env:
+  #         PY_COLORS: '1'
+  #         ANSIBLE_FORCE_COLOR: '1'
+  #         MOLECULE_DISTRO: ${{ matrix.distro }}

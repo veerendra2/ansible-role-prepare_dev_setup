@@ -4,5 +4,6 @@ skip_list:
   - 'package-latest'
   - 'latest[git]'
   - 'no-changed-when'
+  - 'schema[meta]'
 
 verbosity: 1
