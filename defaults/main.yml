@@ -5,7 +5,15 @@ enable_userns_remap: false
 enable_docker_swarm_mode: false
 docker_swarm_advertise_addr: ""
 
+# clone your git repos
 git_projects:
-  dotfiles: "git@github.com:veerendra2/dotfiles.git"
+  my-utils: "https://github.com/veerendra2/my-utils.git"
+  raspberrypi-homeserver: "https://github.com/veerendra2/raspberrypi-homeserver.git"
 
-github_username_keys: ""
+github_username_keys: "https://github.com/veerendra2.keys"
+
+# install dotfiles [https://github.com/veerendra2/dotfiles.git]
+install_dotfiles: true
+
+# install bettercap [https://www.bettercap.org/]
+install_bettercap: true

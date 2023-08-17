@@ -2,13 +2,10 @@
 pip_pkgs:
   - requests
   - thefuck
-  - frida-tools
   - beautifulsoup4
   - youtube_dl
   - ansible
-  - scapy
-  - docker-compose
   - tldr
 
-user_home: "{{ lookup('env', 'HOME') }}"
+user_home: "{{ ansible_env.HOME }}"
 user_name: "{{ ansible_env.USER }}"

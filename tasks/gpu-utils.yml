@@ -1,0 +1,42 @@
+---
+- name: Include gpu variables
+  ansible.builtin.include_vars: gpu.yml
+
+- name: Install necessary packages
+  ansible.builtin.apt:
+    name: "{{ gpu_pkgs }}"
+    state: latest
+    update_cache: yes
+    install_recommends: no
+    force_apt_get: yes
+  become: true
+# TODO https://help.ubuntu.com/community/NvidiaDriversInstallation#NVIDIA_drivers_releases
+- name: Run `ubuntu-drivers autoinstall`
+  ansible.builtin.command: ubuntu-drivers autoinstall
+  become: true
+
+- name: Fetch hashcat project github api json
+  ansible.builtin.get_url:
+    url: https://api.github.com/repos/hashcat/hashcat/releases/latest
+    dest: /tmp/github-api-hashcat.json
+    mode: '0776'
+
+- name: Download latest hashcat binaries
+  ansible.builtin.get_url:
+    url: "{{ lookup('file', '/tmp/github-api-hashcat.json') | from_json | json_query('tarball_url') }}"
+    dest: /tmp/hashcat.tar
+    mode: '0776'
+
+- name: Unarchive hashcat tarball to `/opt`
+  ansible.builtin.unarchive:
+    src: /tmp/hashcat.tar
+    dest: /opt
+    remote_src: yes
+    owner: "{{ user_name }}"
+  become: true
+
+- name: Download rockyou.txt wordlists to `/opt`
+  ansible.builtin.get_url:
+    url: http://scrapmaker.com/data/wordlists/dictionaries/rockyou.txt
+    dest: /opt/rockyou.txt
+    mode: '0776'

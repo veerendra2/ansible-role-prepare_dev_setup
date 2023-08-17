@@ -1,15 +1,15 @@
 ---
-- name: Cloning dotfiles repository
-  git:
+- name: Clone dotfiles repository
+  ansible.builtin.git:
     repo: https://github.com/veerendra2/dotfiles.git
     dest: "{{ user_home }}/projects/dotfiles"
+    force: false
 
 - name: Find dotfiles
-  find:
+  ansible.builtin.find:
     file_type: file
     paths: "{{ user_home }}/projects/dotfiles"
     hidden: true
-    file_type: file
     patterns: ".*"
     excludes:
       - .gitignore
@@ -21,7 +21,7 @@
   register: output
 
 - name: Install dotfiles
-  shell: "ln -sfn {{ item.path }} {{ user_home }}/{{ item.path | basename }}"
+  ansible.builtin.command: "ln -sfn {{ item.path }} {{ user_home }}/{{ item.path | basename }}"
   with_items: "{{ output.files }}"
   loop_control:
     label: "{{ item.path | basename }}"

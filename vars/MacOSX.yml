@@ -77,7 +77,6 @@ brew_cask_apps:
   - caffeine
   - visual-studio-code
   - vagrant
-  - virtualbox
   - bitwarden
   - ngrok
   - spotify
@@ -87,3 +86,5 @@ brew_cask_apps:
   - cyberduck
   - postman
   - vlc
+  - jellyfin-media-player
+  - zoom

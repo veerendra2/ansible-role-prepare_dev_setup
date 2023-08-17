@@ -1,61 +1,68 @@
 ---
 - name: Run update
-  apt:
+  ansible.builtin.apt:
     upgrade: true
-    update_cache: yes
-  ignore_errors: yes
-  become: yes
+    update_cache: true
+  become: true
 
-- name: Install necessary packages
-  apt:
-    name: "{{ pkgs }}"
+- name: Install packages
+  ansible.builtin.apt:
+    name: "{{ cli.pkgs }}"
     state: latest
-    update_cache: yes
-    install_recommends: no
-    force_apt_get: yes
+    update_cache: true
+    install_recommends: false
+    force_apt_get: true
   become: true
 
 - name: Install snap packages
-  snap:
-    name: "{{ snaps }}"
-    classic: yes
+  community.general.snap:
+    name: "{{ item.key }}"
+    classic: "{{ item.value.classic }}"
+  loop: "{{ lookup('dict', cli.snap_pkgs) }}"
+  loop_control:
+    label: "{{ item.key }}"
   become: true
 
-- block:
-  - name: Check docker installed
-    shell: docker --version
-    register: output
-  - debug:
-      msg: "{{ output.stdout }}"
-  rescue:
-  - name: Install and configure docker
-    include_tasks: docker.yml
+- name: Gather the package facts
+  ansible.builtin.package_facts:
+    manager: auto
 
-- block:
-  - name: Check bettercap installed
-    shell: bettercap --version
-    register: output
-  - debug:
-      msg: "{{ output.stdout }}"
-  rescue:
-  - name: Install bettercap
-    include_tasks: bettercap.yml
+- name: Include docker tasks
+  ansible.builtin.include_tasks: docker.yml
+  vars:
+    ansible_become: true
+  when: "'docker-ce-cli' not in ansible_facts.packages"
 
-- name: Check Nvidia card present
-  shell: lspci | grep -i --color 'vga\|3d\|2d' | grep -i NVIDIA
+- name: Bettercap block
+  when: install_bettercap
+  block:
+    - name: Check bettercap installed
+      ansible.builtin.command: bettercap --version
+      register: output
+      changed_when: false
+
+    - name: Display bettercap version
+      ansible.builtin.debug:
+        msg: "{{ output.stdout }}"
+  rescue:
+    - name: Include bettercap tasks
+      ansible.builtin.include_tasks: bettercap.yml
+
+- name: Check nvidia pci
+  ansible.builtin.shell: |
+    lspci | grep -i --color 'vga\|3d\|2d' | grep -i NVIDIA > /dev/null 2>&1
   register: output
+  changed_when: false
   ignore_errors: true
 
-- block:
-    - debug: msg="{{ output.stdout }}"
-
-    - name: Download custom script
-      get_url:
-        url: "{{ gpu_utils_script }}"
-        dest: /tmp/gpu_utils_script.sh
-        mode: 0775
-
-    - name: Install nvidia drivers, hashcat and aircrack-ng
-      shell: /tmp/gpu_utils_script.sh
-      become: true
+- name: Install nvidia drivers block
   when: output.rc == 0
+  block:
+    - name: Display nvidia pci output
+      ansible.builtin.debug:
+        msg: "{{ output.stdout }}"
+
+    - name: Include gpu utils tasks
+      ansible.builtin.include_tasks: gpu-utils.yml
+      vars:
+        ansible_become: true
