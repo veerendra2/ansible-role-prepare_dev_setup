@@ -63,3 +63,19 @@ cli:
     - pastebinit
     - wireguard
     - aria2
+
+desktop:
+  ppas:
+    - "ppa:wireshark-dev/stable"
+  ppa_keys:
+  snap_pkgs:
+    - "spotify"
+    - "bitwarden"
+    - "code"
+    - "signal-desktop"
+    - "vlc"
+    - "pinta"
+  pkgs:
+    - "filezilla"
+    - "wireshark"
+    - "protonvpn"

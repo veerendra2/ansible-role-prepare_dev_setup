@@ -1,4 +1,15 @@
 ---
+- name: Fetch package facts
+  ansible.builtin.package_facts:
+    manager: auto
+
+# TODO
+# echo $XDG_CURRENT_DESKTOP
+# gnome:ubuntu
+# echo $DESKTOP_SESSION
+# ubuntu
+# dpkg -l ubuntu-desktop
+
 - name: Run update
   ansible.builtin.apt:
     upgrade: true
@@ -22,10 +33,6 @@
   loop_control:
     label: "{{ item.key }}"
   become: true
-
-- name: Gather the package facts
-  ansible.builtin.package_facts:
-    manager: auto
 
 - name: Include docker tasks
   ansible.builtin.include_tasks: docker.yml
