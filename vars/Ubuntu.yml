@@ -59,23 +59,33 @@ cli:
     - libusb-1.0-0-dev
     - libnetfilter-queue-dev
     - protonvpn-cli
-    - gir1.2-appindicator3-0.1
     - pastebinit
     - wireguard
     - aria2
 
 desktop:
   ppas:
-    - "ppa:wireshark-dev/stable"
+    - ppa:wireshark-dev/stable
   ppa_keys:
   snap_pkgs:
-    - "spotify"
-    - "bitwarden"
-    - "code"
-    - "signal-desktop"
-    - "vlc"
-    - "pinta"
+    spotify:
+      classic: false
+    bitwarden:
+      classic: false
+    code:
+      classic: false
+    signal-desktop:
+      classic: false
+    vlc:
+      classic: false
+    pinta:
+      classic: false
   pkgs:
-    - "filezilla"
-    - "wireshark"
-    - "protonvpn"
+    - filezilla
+    - wireshark
+    - protonvpn
+    - gnome-shell-extension-appindicator
+    - gir1.2-appindicator3-0.1
+
+protonvpn_deb_pkgs: https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-2_all.deb
+

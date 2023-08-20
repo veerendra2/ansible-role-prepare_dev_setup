@@ -3,12 +3,34 @@
   ansible.builtin.package_facts:
     manager: auto
 
-# TODO
-# echo $XDG_CURRENT_DESKTOP
-# gnome:ubuntu
-# echo $DESKTOP_SESSION
-# ubuntu
-# dpkg -l ubuntu-desktop
+- name: Merge packages list
+  set_facts:
+    ppas: "{{ cli.ppas }}"
+    ppa_keys: "{{ cli.ppa_keys }}"
+    pkgs: "{{ cli.pkgs }}"
+  when: "'ubuntu-desktop' in ansible_facts.packages"
+
+- name: Add ppa
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+    update_cache: no
+  with_items: "{{ cli.ppas }}"
+  when: cli.ppas
+  become: true
+
+- name: Add ppa repo keys
+  apt_key:
+    url: "{{ item }}"
+    state: present
+  with_items: "{{ cli.ppa_keys }}"
+  when: cli.ppa_keys
+  become: true
+
+- name: Install protonvpn deb package
+  apt:
+    deb: "{{ protonvpn_deb_pkg_link }}"
+  become: true
 
 - name: Run update
   ansible.builtin.apt:
@@ -73,3 +95,7 @@
       ansible.builtin.include_tasks: gpu-utils.yml
       vars:
         ansible_become: true
+
+  - name: Change ubuntu gnome app icon location
+    ansible.builtin.command: "gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true"
+    when: "'ubuntu-desktop' in ansible_facts.packages"
