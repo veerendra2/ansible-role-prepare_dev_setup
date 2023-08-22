@@ -3,11 +3,9 @@
   ansible.builtin.package_facts:
     manager: auto
 
-- name: Merge packages list
+- name: Merge desktop packages list
   set_facts:
-    ppas: "{{ cli.ppas }}"
-    ppa_keys: "{{ cli.ppa_keys }}"
-    pkgs: "{{ cli.pkgs }}"
+    cli: "{{ cli | ansible.builtin.combine(desktop, list_merge='append', recursive=true) }}"
   when: "'ubuntu-desktop' in ansible_facts.packages"
 
 - name: Add ppa
