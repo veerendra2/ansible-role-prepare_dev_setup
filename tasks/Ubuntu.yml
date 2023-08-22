@@ -9,7 +9,7 @@
   when: "'ubuntu-desktop' in ansible_facts.packages"
 
 - name: Add ppa
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "{{ item }}"
     state: present
     update_cache: no
@@ -18,7 +18,7 @@
   become: true
 
 - name: Add ppa repo keys
-  apt_key:
+  ansible.builtin.apt_key:
     url: "{{ item }}"
     state: present
   with_items: "{{ cli.ppa_keys }}"
@@ -26,7 +26,7 @@
   become: true
 
 - name: Install protonvpn deb package
-  apt:
+  ansible.builtin.apt:
     deb: "{{ protonvpn_deb_pkg_link }}"
   become: true
 
