@@ -62,6 +62,7 @@ cli:
     - pastebinit
     - wireguard
     - aria2
+    - docker-compose
 
 desktop:
   ppas:
@@ -73,7 +74,7 @@ desktop:
     bitwarden:
       classic: false
     code:
-      classic: false
+      classic: true
     signal-desktop:
       classic: false
     vlc:
@@ -87,4 +88,4 @@ desktop:
     - gnome-shell-extension-appindicator
     - gir1.2-appindicator3-0.1
 
-protonvpn_deb_pkgs: https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-2_all.deb
+protonvpn_deb_pkg_link: https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-2_all.deb

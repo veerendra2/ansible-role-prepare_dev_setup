@@ -17,3 +17,6 @@ install_dotfiles: true
 
 # install bettercap [https://www.bettercap.org/]
 install_bettercap: true
+
+# run custom docker.yml tasks to install docker
+install_docker: true

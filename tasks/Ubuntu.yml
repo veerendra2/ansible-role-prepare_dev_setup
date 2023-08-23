@@ -4,61 +4,58 @@
     manager: auto
 
 - name: Merge desktop packages list
-  set_facts:
+  set_fact:
     cli: "{{ cli | ansible.builtin.combine(desktop, list_merge='append', recursive=true) }}"
   when: "'ubuntu-desktop' in ansible_facts.packages"
 
-- name: Add ppa
-  ansible.builtin.apt_repository:
-    repo: "{{ item }}"
-    state: present
-    update_cache: no
-  with_items: "{{ cli.ppas }}"
-  when: cli.ppas
-  become: true
-
-- name: Add ppa repo keys
-  ansible.builtin.apt_key:
-    url: "{{ item }}"
-    state: present
-  with_items: "{{ cli.ppa_keys }}"
-  when: cli.ppa_keys
-  become: true
-
-- name: Install protonvpn deb package
-  ansible.builtin.apt:
-    deb: "{{ protonvpn_deb_pkg_link }}"
-  become: true
-
-- name: Run update
-  ansible.builtin.apt:
-    upgrade: true
-    update_cache: true
-  become: true
-
 - name: Install packages
-  ansible.builtin.apt:
-    name: "{{ cli.pkgs }}"
-    state: latest
-    update_cache: true
-    install_recommends: false
-    force_apt_get: true
   become: true
+  block:
+    - name: Add ppa
+      ansible.builtin.apt_repository:
+        repo: "{{ item }}"
+        state: present
+        update_cache: no
+      with_items: "{{ cli.ppas }}"
+      when: cli.ppas
 
-- name: Install snap packages
-  community.general.snap:
-    name: "{{ item.key }}"
-    classic: "{{ item.value.classic }}"
-  loop: "{{ lookup('dict', cli.snap_pkgs) }}"
-  loop_control:
-    label: "{{ item.key }}"
-  become: true
+    - name: Add ppa repo keys
+      ansible.builtin.apt_key:
+        url: "{{ item }}"
+        state: present
+      with_items: "{{ cli.ppa_keys }}"
+      when: cli.ppa_keys
+
+    - name: Install protonvpn deb package
+      ansible.builtin.apt:
+        deb: "{{ protonvpn_deb_pkg_link }}"
+
+    - name: Run update
+      ansible.builtin.apt:
+        upgrade: true
+        update_cache: true
+
+    - name: Install packages
+      ansible.builtin.apt:
+        name: "{{ cli.pkgs }}"
+        state: latest
+        update_cache: true
+        install_recommends: false
+        force_apt_get: true
+
+    - name: Install snap packages
+      community.general.snap:
+        name: "{{ item.key }}"
+        classic: "{{ item.value.classic }}"
+      loop: "{{ lookup('dict', cli.snap_pkgs) }}"
+      loop_control:
+        label: "{{ item.key }}"
 
 - name: Include docker tasks
   ansible.builtin.include_tasks: docker.yml
   vars:
     ansible_become: true
-  when: "'docker-ce-cli' not in ansible_facts.packages"
+  when: "install_docker and 'docker-ce-cli' not in ansible_facts.packages"
 
 - name: Bettercap block
   when: install_bettercap
@@ -95,5 +92,7 @@
         ansible_become: true
 
 - name: Change ubuntu gnome app icon location
-  ansible.builtin.command: "gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true"
+  ansible.builtin.shell: |
+    gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
+    gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
   when: "'ubuntu-desktop' in ansible_facts.packages"
