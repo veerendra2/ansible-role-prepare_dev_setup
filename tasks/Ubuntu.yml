@@ -11,6 +11,13 @@
 - name: Install packages
   become: true
   block:
+    - name: Add ppa repo keys
+      ansible.builtin.apt_key:
+        url: "{{ item }}"
+        state: present
+      with_items: "{{ cli.ppa_keys }}"
+      when: cli.ppa_keys
+
     - name: Add ppa
       ansible.builtin.apt_repository:
         repo: "{{ item }}"
@@ -18,13 +25,6 @@
         update_cache: no
       with_items: "{{ cli.ppas }}"
       when: cli.ppas
-
-    - name: Add ppa repo keys
-      ansible.builtin.apt_key:
-        url: "{{ item }}"
-        state: present
-      with_items: "{{ cli.ppa_keys }}"
-      when: cli.ppa_keys
 
     - name: Install protonvpn deb package
       ansible.builtin.apt:
@@ -55,9 +55,9 @@
   ansible.builtin.include_tasks: docker.yml
   vars:
     ansible_become: true
-  #when: "install_docker and 'docker-ce-cli' not in ansible_facts.packages"
+  when: "'docker-ce-cli' not in ansible_facts.packages"
 
-- name: Bettercap block
+- name: Install Bettercap
   when: install_bettercap
   block:
     - name: Check bettercap installed
@@ -74,13 +74,14 @@
 
 - name: Check nvidia pci
   ansible.builtin.shell: |
-    lspci | grep -i --color 'vga\|3d\|2d' | grep -i NVIDIA > /dev/null 2>&1
+    lspci | grep -i --color 'vga\|3d\|2d' | grep -i NVIDIA
   register: output
   changed_when: false
   ignore_errors: true
 
 - name: Install nvidia drivers block
   when: output.rc == 0
+  become: true
   block:
     - name: Display nvidia pci output
       ansible.builtin.debug:
@@ -88,8 +89,6 @@
 
     - name: Include gpu utils tasks
       ansible.builtin.include_tasks: gpu-utils.yml
-      vars:
-        ansible_become: true
 
 - name: Change ubuntu gnome app icon location
   ansible.builtin.shell: |
