@@ -4,7 +4,7 @@
     manager: auto
 
 - name: Merge desktop packages list
-  set_fact:
+  ansible.builtin.set_fact:
     cli: "{{ cli | ansible.builtin.combine(desktop, list_merge='append', recursive=true) }}"
   when: "'ubuntu-desktop' in ansible_facts.packages"
 
