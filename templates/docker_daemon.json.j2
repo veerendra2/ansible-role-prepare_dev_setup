@@ -1,8 +1,8 @@
 {
-{% if enable_docker_live_restore %}
+{% if enable_docker_live_restore and not enable_docker_swarm_metrics %}
   "live-restore": true
 {% endif %}
-{% if enable_userns_remap %}
+{% if enable_userns_remap and not enable_docker_swarm_metrics %}
   "userns-remap": "default"
 {% endif %}
 {% if enable_docker_swarm_metrics %}

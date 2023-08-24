@@ -1,9 +1,9 @@
 ---
-- name: Download docker install script
+- name: Download get-docker.sh script
   ansible.builtin.get_url:
     url: https://get.docker.com/
     dest: /tmp/get-docker.sh
-    mode: '0776'
+    mode: 0776
 
 - name: Install docker
   ansible.builtin.command: /tmp/get-docker.sh
@@ -30,7 +30,23 @@
     src: templates/docker_daemon.json.j2
     dest: /etc/docker/daemon.json
     group: docker
-    mode: '0640'
+    mode: 0640
+
+- name: Fetch docker-compose project github api json
+  ansible.builtin.get_url:
+    url: https://api.github.com/repos/docker/compose/releases/latest
+    dest: /tmp/github-api-docker-compose.json
+    mode: 0776
+
+- name: Set docker-compose latest version
+  ansible.builtin.set_fact:
+    docker_compose_version: "{{ lookup('file', '/tmp/github-api-docker-compose.json') | from_json | json_query('tag_name') }}"
+
+- name: Install latest docker-compose
+  ansible.builtin.get_url:
+    url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-linux-{{ ansible_architecture }}"
+    dest: /usr/local/bin/docker-compose
+    mode: 0755
 
 - name: Enable docker swarm mode
   community.docker.docker_swarm:

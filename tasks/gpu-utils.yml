@@ -19,13 +19,13 @@
   ansible.builtin.get_url:
     url: https://api.github.com/repos/hashcat/hashcat/releases/latest
     dest: /tmp/github-api-hashcat.json
-    mode: '0776'
+    mode: 0776
 
 - name: Download latest hashcat binaries
   ansible.builtin.get_url:
     url: "{{ lookup('file', '/tmp/github-api-hashcat.json') | from_json | json_query('tarball_url') }}"
     dest: /tmp/hashcat.tar
-    mode: '0776'
+    mode: 0776
 
 - name: Unarchive hashcat tarball to `/opt`
   ansible.builtin.unarchive:
@@ -39,4 +39,4 @@
   ansible.builtin.get_url:
     url: http://scrapmaker.com/data/wordlists/dictionaries/rockyou.txt
     dest: /opt/rockyou.txt
-    mode: '0776'
+    mode: 0776
