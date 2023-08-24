@@ -62,7 +62,6 @@ cli:
     - pastebinit
     - wireguard
     - aria2
-    - docker-compose
 
 desktop:
   ppas:
