@@ -6,6 +6,7 @@ pip_pkgs:
   - youtube_dl
   - ansible
   - tldr
+  - jmespath
 
 user_home: "{{ ansible_env.HOME }}"
 user_name: "{{ ansible_env.USER }}"

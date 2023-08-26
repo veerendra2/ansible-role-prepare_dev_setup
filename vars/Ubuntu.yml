@@ -64,7 +64,6 @@ cli:
     - pastebinit
     - wireguard
     - aria2
-    - jmespath
 
 desktop:
   ppas:
