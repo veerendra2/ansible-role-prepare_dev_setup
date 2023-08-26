@@ -1,5 +1,6 @@
 cli:
   ppas:
+    - ppa:longsleep/golang-backports
   ppa_keys:
   snap_pkgs:
     ngrok:
@@ -55,7 +56,7 @@ cli:
     - vim
     - git
     - vagrant
-    - golang
+    - golang-go
     - build-essential
     - libpcap-dev
     - libusb-1.0-0-dev
