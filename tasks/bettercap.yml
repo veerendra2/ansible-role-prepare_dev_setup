@@ -14,10 +14,12 @@
     GOPATH: "{{ tempdir.path }}"
 
 - name: Install bettercap
-  ansible.builtin.shell: |
-    mv {{ tempdir.path }}/bin/bettercap /usr/local/bin/
-    rm -rf {{ tempdir.path }}
-    bettercap -version
+  community.general.make:
+    chdir: "{{ tempdir.path }}"
+    target: install
+
+- name: Fetch bettercap version
+  ansible.builtin.command: bettercap -version
   become: true
   register: output
 

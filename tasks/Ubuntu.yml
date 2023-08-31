@@ -51,6 +51,10 @@
       loop_control:
         label: "{{ item.key }}"
 
+    - name: Run autoremove
+      apt:
+        autoremove: yes
+
 - name: Include docker tasks
   ansible.builtin.include_tasks: docker.yml
   vars:
