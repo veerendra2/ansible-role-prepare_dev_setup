@@ -22,7 +22,7 @@
       ansible.builtin.apt_repository:
         repo: "{{ item }}"
         state: present
-        update_cache: no
+        update_cache: false
       with_items: "{{ cli.ppas }}"
       when: cli.ppas
 
@@ -53,7 +53,7 @@
 
     - name: Run autoremove
       apt:
-        autoremove: yes
+        autoremove: true
 
 - name: Include docker tasks
   ansible.builtin.include_tasks: docker.yml

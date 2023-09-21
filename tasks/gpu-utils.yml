@@ -6,9 +6,9 @@
   ansible.builtin.apt:
     name: "{{ gpu_pkgs }}"
     state: latest
-    update_cache: yes
-    install_recommends: no
-    force_apt_get: yes
+    update_cache: true
+    install_recommends: false
+    force_apt_get: true
   become: true
 # TODO https://help.ubuntu.com/community/NvidiaDriversInstallation#NVIDIA_drivers_releases
 - name: Run `ubuntu-drivers autoinstall`
@@ -31,7 +31,7 @@
   ansible.builtin.unarchive:
     src: /tmp/hashcat.tar
     dest: /opt
-    remote_src: yes
+    remote_src: true
     owner: "{{ user_name }}"
   become: true
 

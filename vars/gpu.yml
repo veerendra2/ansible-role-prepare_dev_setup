@@ -1,3 +1,4 @@
+---
 gpu_pkgs:
   - ubuntu-drivers-common
   - "nvidia-cuda-*"
