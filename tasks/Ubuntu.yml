@@ -52,7 +52,7 @@
         label: "{{ item.key }}"
 
     - name: Run autoremove
-      apt:
+      ansible.builtin.apt:
         autoremove: true
 
 - name: Include docker tasks
