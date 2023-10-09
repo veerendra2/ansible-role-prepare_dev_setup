@@ -31,6 +31,7 @@
     dest: "{{ user_home }}/projects/{{ item.key }}"
     force: false
   loop: "{{ lookup('dict', git_projects) }}"
+  ignore_errors: true
   loop_control:
     label: "{{ item.key }}"
   when: git_projects|length > 0
