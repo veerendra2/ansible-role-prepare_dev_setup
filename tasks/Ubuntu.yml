@@ -22,7 +22,7 @@
       ansible.builtin.apt_repository:
         repo: "{{ item }}"
         state: present
-        update_cache: no
+        update_cache: false
       with_items: "{{ cli.ppas }}"
       when: cli.ppas
 
@@ -50,6 +50,10 @@
       loop: "{{ lookup('dict', cli.snap_pkgs) }}"
       loop_control:
         label: "{{ item.key }}"
+
+    - name: Run autoremove
+      ansible.builtin.apt:
+        autoremove: true
 
 - name: Include docker tasks
   ansible.builtin.include_tasks: docker.yml

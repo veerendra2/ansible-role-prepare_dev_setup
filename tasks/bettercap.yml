@@ -21,6 +21,10 @@
   become: true
   register: output
 
+- name: Fetch bettercap version
+  ansible.builtin.command: bettercap -version
+  register: output
+
 - name: Display bettercap version
   ansible.builtin.debug:
     msg: "{{ output.stdout }}"

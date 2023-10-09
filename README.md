@@ -16,6 +16,9 @@ An ansible role to install necessary packages and configure my Ubuntu and MacOS.
 
 
 ## Usage
+
+> https://github.com/veerendra2/prepare-my-machine.git
+
 ```bash
 $ ansible-galaxy install veerendra2.prepare_dev_setup
 ```
