@@ -65,6 +65,10 @@ brew_pkgs:
   - restic
   - readline
   - bitwarden-cli
+  - libpq
+
+brew_link_pkgs:
+  - libpq
 
 brew_cask_appdir: /Applications
 brew_cask_apps:

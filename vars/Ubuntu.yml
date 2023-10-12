@@ -2,14 +2,12 @@
 cli:
   ppas:
     - ppa:longsleep/golang-backports
-  ppa_keys:
+  ppa_keys: []
   snap_pkgs:
     ngrok:
       classic: false
     kubectl:
       classic: true
-    jq:
-      classic: false
     yq:
       classic: false
     terraform:
@@ -66,11 +64,13 @@ cli:
     - pastebinit
     - wireguard
     - aria2
+    - postgresql-client
+    - jq
 
 desktop:
   ppas:
     - ppa:wireshark-dev/stable
-  ppa_keys:
+  ppa_keys: []
   snap_pkgs:
     spotify:
       classic: false

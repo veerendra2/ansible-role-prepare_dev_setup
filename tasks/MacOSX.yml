@@ -20,12 +20,9 @@
     path: "{{ brew_path.stdout }}/*"
   become: true
 
-- name: Update Homebrew
+- name: Update homebrew and upgrade all packages
   community.general.homebrew:
     update_homebrew: true
-
-- name: Upgrade homebrew core packages
-  community.general.homebrew:
     upgrade_all: true
 
 - name: Upgrade homebrew cask packages
@@ -36,6 +33,11 @@
   community.general.homebrew:
     name: "{{ brew_pkgs }}"
     state: present
+
+- name: Symlink packages into Homebrew's prefix
+  community.general.homebrew:
+    name: "{{ brew_link_pkgs }}"
+    state: linked
 
 - name: Install homebrew cask packages
   community.general.homebrew_cask:
