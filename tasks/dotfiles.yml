@@ -5,7 +5,7 @@
     dest: "{{ user_home }}/projects/dotfiles"
     force: false
 
-- name: Find dotfiles
+- name: Select dotfiles to install
   ansible.builtin.find:
     file_type: file
     paths: "{{ user_home }}/projects/dotfiles"
