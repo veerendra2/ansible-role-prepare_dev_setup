@@ -1,0 +1,20 @@
+- hosts: localhost
+  connection: local
+  vars_files:
+    - defaults/main.yml
+  vars:
+    - workspace_folders: {}
+
+  tasks:
+    - set_fact:
+        workspace_folders: "{{ workspace_folders | combine( { 'name': item, 'path':item } ) }}"
+      with_items: "{{ git_projects }}"
+
+
+    - debug:
+        msg: "{{  workspace_folders  }}"
+
+    # - name: Generate vscode workspace file
+    #   copy:
+    #     content: "{{ json | to_json }}"
+    #     dest: "{{ filename }}.json"

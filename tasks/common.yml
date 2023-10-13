@@ -36,6 +36,18 @@
     label: "{{ item.key }}"
   when: git_projects|length > 0
 
+- set_facts:
+    workspace_folders: "{{ dict | combine( { item.key: item.key } ) }}"
+  loop: "{{ lookup('dict', git_projects) }}"
+  ignore_errors: true
+  loop_control:
+    label: "{{ item.key }}"
+
+- name: Generate vscode workspace file
+  copy:
+    content: "{{ json | to_json }}"
+    dest: "{{ filename }}.json"
+
 - name: Run dotfiles install tasks
   ansible.builtin.import_tasks: dotfiles.yml
   when: install_dotfiles

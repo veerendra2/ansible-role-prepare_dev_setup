@@ -1,0 +1,13 @@
+{% for i in range(11) %}
+  {{ i }}
+{% endfor %}
+{
+	"folders": [
+{% for key, _  in git_projects.items() %}{
+    "name": {{ key }},
+    "path": {{ key }}
+    {% if %}
+{% endfor %}
+  ],
+	"settings": {}
+}

@@ -8,5 +8,9 @@ pip_pkgs:
   - tldr
   - jmespath
 
+vscode_workspace_template_json:
+  folders: {}
+  settings: {}
+
 user_home: "{{ ansible_env.HOME }}"
 user_name: "{{ ansible_env.USER }}"
