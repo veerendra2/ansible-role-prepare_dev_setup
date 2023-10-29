@@ -25,23 +25,25 @@
     state: directory
     mode: 0755
 
-- name: Clone git repositories
-  ansible.builtin.git:
-    repo: "{{ item.value }}"
-    dest: "{{ user_home }}/projects/{{ item.key }}"
-    force: false
-  loop: "{{ lookup('dict', git_projects) }}"
-  ignore_errors: true
-  loop_control:
-    label: "{{ item.key }}"
+- name: Setup git repositories
   when: git_projects|length > 0
+  block:
+  - name: Clone git repositories
+    ansible.builtin.git:
+      repo: "{{ item.value }}"
+      dest: "{{ user_home }}/projects/{{ item.key }}"
+      force: false
+    loop: "{{ lookup('dict', git_projects) }}"
+    ignore_errors: true
+    loop_control:
+      label: "{{ item.key }}"
 
-- name: Generate vs workspace file ~/projects/personal.code-workspace
-  ansible.builtin.template:
-    src: personal.code-workspace.j2
-    dest: "{{ user_home }}/projects/personal.code-workspace"
-    group: "{{ user_name }}"
-    mode: 0640
+  - name: Generate vscode workspace file ~/projects/personal.code-workspace
+    ansible.builtin.template:
+      src: personal.code-workspace.j2
+      dest: "{{ user_home }}/projects/personal.code-workspace"
+      group: "{{ user_name }}"
+      mode: 0640
 
 - name: Run dotfiles install tasks
   ansible.builtin.import_tasks: dotfiles.yml
