@@ -45,6 +45,6 @@
         group: "{{ user_name }}"
         mode: 0640
 
-- name: Run dotfiles install tasks
+- name: Import dotfiles tasks
   ansible.builtin.import_tasks: dotfiles.yml
   when: install_dotfiles
