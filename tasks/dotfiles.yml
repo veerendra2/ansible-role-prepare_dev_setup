@@ -4,6 +4,7 @@
     repo: https://github.com/veerendra2/dotfiles.git
     dest: "{{ user_home }}/projects/dotfiles"
     force: false
+  ignore_errors: true
 
 - name: Select dotfiles to install
   ansible.builtin.find:

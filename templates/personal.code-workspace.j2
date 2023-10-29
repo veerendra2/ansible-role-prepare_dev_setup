@@ -1,0 +1,11 @@
+{
+	"folders": [
+{% for key, _  in git_projects.items() %}
+    {
+      "name": "{{ key }}",
+      "path": "{{ key }}"
+    }{{ ", " if not loop.last else "" }}
+{% endfor %}
+  ],
+	"settings": {}
+}
