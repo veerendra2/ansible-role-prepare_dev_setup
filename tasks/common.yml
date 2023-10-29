@@ -39,7 +39,7 @@
 - name: Generate vs workspace file ~/projects/personal.code-workspace
   ansible.builtin.template:
     src: personal.code-workspace.j2
-    dest: "{{ user_home }}personal.code-workspace"
+    dest: "{{ user_home }}/projects/personal.code-workspace"
     group: "{{ user_name }}"
     mode: 0640
 
