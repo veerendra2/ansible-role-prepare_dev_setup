@@ -53,3 +53,6 @@
     install_options:
       - "appdir={{ brew_cask_appdir }}"
   when: ansible_architecture == "x86_64"
+
+- name: Run fzf/install
+  ansible.builtin.command: "{{ brew_path.stdout }}/opt/fzf/install"

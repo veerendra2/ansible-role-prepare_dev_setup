@@ -66,6 +66,7 @@ brew_pkgs:
   - readline
   - bitwarden-cli
   - libpq
+  - fzf
 
 brew_link_pkgs:
   - libpq
