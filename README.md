@@ -33,7 +33,6 @@ ansible-galaxy install veerendra2.prepare_dev_setup
 ### Dafault variables
 ```yaml
 ---
----
 enable_docker_swarm_metrics: false
 enable_docker_live_restore: true
 enable_userns_remap: false
