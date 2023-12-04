@@ -8,7 +8,8 @@ docker_swarm_advertise_addr: ""
 # clone your git repos
 git_projects:
   my-utils: "https://github.com/veerendra2/my-utils.git"
-  raspberrypi-homeserver: "https://github.com/veerendra2/raspberrypi-homeserver.git"
+  ansible-role-prepare_dev_setup: "https://github.com/veerendra2/ansible-role-prepare_dev_setup.git"
+  prepare-my-machine: "https://github.com/veerendra2/prepare-my-machine.git"
 
 github_username_keys: "https://github.com/veerendra2.keys"
 
@@ -18,6 +19,7 @@ install_dotfiles: true
 # install bettercap [https://www.bettercap.org/]
 install_bettercap: true
 
+# add hosts to ~/.ssh/known_hosts
 known_hosts_list:
   - github.com
   - gitlab.com
