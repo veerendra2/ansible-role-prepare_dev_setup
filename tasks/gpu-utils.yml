@@ -10,7 +10,6 @@
     install_recommends: false
     force_apt_get: true
 
-# TODO https://help.ubuntu.com/community/NvidiaDriversInstallation#NVIDIA_drivers_releases
 - name: Run `ubuntu-drivers autoinstall`
   ansible.builtin.command: ubuntu-drivers autoinstall
 

@@ -13,7 +13,7 @@
     regenerate: never
 
 - name: Add known_hosts
-  known_hosts:
+  ansible.builtin.known_hosts:
     name: "{{ item }}"
     state: present
     key: "{{ lookup('pipe', 'ssh-keyscan {{ item }}') }}"
