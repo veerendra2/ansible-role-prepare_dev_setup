@@ -73,27 +73,27 @@ brew_pkgs:
 brew_cask_appdir: /Applications
 
 brew_cask_apps:
-- bitwarden
-- caffeine
-- chromedriver
-- cyberduck
-- docker
-- firefox
-- google-chrome
-- handbrake
-- iterm2
-- jellyfin-media-player
-- microsoft-azure-storage-explorer
-- ngrok
-- postman
-- slack
-- spotify
-- textmate
-- vagrant
-- visual-studio-code
-- vlc
-- whatsapp
-- zoom
+  - bitwarden
+  - caffeine
+  - chromedriver
+  - cyberduck
+  - docker
+  - firefox
+  - google-chrome
+  - handbrake
+  - iterm2
+  - jellyfin-media-player
+  - microsoft-azure-storage-explorer
+  - ngrok
+  - postman
+  - slack
+  - spotify
+  - textmate
+  - vagrant
+  - visual-studio-code
+  - vlc
+  - whatsapp
+  - zoom
 
 brew_link_pkgs:
   - libpq
