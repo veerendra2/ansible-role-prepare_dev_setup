@@ -13,7 +13,7 @@ galaxy_info:
         - jammy
     - name: MacOSX
       versions:
-        - '13.5'
+        - "10.15"
   galaxy_tags:
     - system
     - docker
@@ -21,3 +21,4 @@ galaxy_info:
     - ubuntu
     - macos
     - automation
+repository: "https://github.com/veerendra2/ansible-role-prepare_dev_setup"
