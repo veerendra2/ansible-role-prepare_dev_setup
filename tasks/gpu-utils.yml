@@ -9,11 +9,10 @@
     update_cache: true
     install_recommends: false
     force_apt_get: true
-  become: true
+
 # TODO https://help.ubuntu.com/community/NvidiaDriversInstallation#NVIDIA_drivers_releases
 - name: Run `ubuntu-drivers autoinstall`
   ansible.builtin.command: ubuntu-drivers autoinstall
-  become: true
 
 - name: Fetch hashcat project github api json
   ansible.builtin.uri:
@@ -33,10 +32,11 @@
     dest: /opt
     remote_src: true
     owner: "{{ user_name }}"
-  become: true
+    mode: 0776
 
 - name: Download rockyou.txt wordlists to `/opt`
   ansible.builtin.get_url:
     url: http://scrapmaker.com/data/wordlists/dictionaries/rockyou.txt
     dest: /opt/rockyou.txt
+    owner: "{{ user_name }}"
     mode: 0776
