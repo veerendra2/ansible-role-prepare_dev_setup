@@ -1,13 +1,3 @@
 ---
-pip_pkgs:
-  - setuptools
-  - jmespath
-  - requests
-  - thefuck
-  - beautifulsoup4
-  - youtube_dl
-  - ansible
-  - tldr
-
 user_home: "{{ ansible_env.HOME }}"
 user_name: "{{ ansible_env.USER }}"

@@ -10,16 +10,16 @@ An ansible role to install necessary packages and configure my Ubuntu and MacOS.
 
 <img src="https://user-images.githubusercontent.com/8393701/248329468-ed036c98-08e7-4ee6-99ef-d5cef2e48a95.png" alt="Windows" width="70"/> <img src="https://user-images.githubusercontent.com/8393701/248331160-ae1cd8f6-7c4b-483b-9799-6b44ed3f30f2.png" alt="Mac" width="74"/>
 
-| Tested on |
-| --------- |
-| `Ubuntu 22.04.3 LTS aarch64` :white_check_mark: |
-| `Ubuntu 22.04.3 LTS x86_64` :white_check_mark: |
-| `macOS 13.5 22G74 arm64` :white_check_mark:|
+| OS                   | Architecture     | Tested             |
+| -------------------- | ---------------- | ------------------ |
+| `Ubuntu 22.04.3 LTS` | `arm64`, `amd64` | :white_check_mark: |
+| `macOS 14.0`         | `arm64`          | :white_check_mark: |
 
 
 ## Usage
 
-> https://github.com/veerendra2/prepare-my-machine.git
+!!! example
+    https://github.com/veerendra2/prepare-my-machine.git
 
 ```bash
 $ ansible-galaxy install veerendra2.prepare_dev_setup

@@ -22,7 +22,7 @@
 
 - name: Install pypi packages
   ansible.builtin.pip:
-    name: "{{ pip_pkgs }}"
+    requirements: requirements.txt
     state: latest
     extra_args: "--no-cache-dir --upgrade"
     executable: pip3
