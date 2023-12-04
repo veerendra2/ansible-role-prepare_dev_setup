@@ -17,3 +17,7 @@ install_dotfiles: true
 
 # install bettercap [https://www.bettercap.org/]
 install_bettercap: true
+
+known_hosts_list:
+  - github.com
+  - gitlab.com

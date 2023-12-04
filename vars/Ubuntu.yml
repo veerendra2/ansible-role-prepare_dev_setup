@@ -34,7 +34,9 @@ cli:
     - bridge-utils
     - conntrack
     - python3-dev
+    - python3-pip
     - screen
+    - tmux
     - traceroute
     - ssh
     - secure-delete

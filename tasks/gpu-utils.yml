@@ -16,14 +16,14 @@
   become: true
 
 - name: Fetch hashcat project github api json
-  ansible.builtin.get_url:
+  ansible.builtin.uri:
     url: https://api.github.com/repos/hashcat/hashcat/releases/latest
-    dest: /tmp/github-api-hashcat.json
-    mode: 0776
+    return_content: true
+  register: this
 
 - name: Download latest hashcat binaries
   ansible.builtin.get_url:
-    url: "{{ lookup('file', '/tmp/github-api-hashcat.json') | from_json | json_query('tarball_url') }}"
+    url: "{{ this.content | from_json | json_query('tarball_url') }}"
     dest: /tmp/hashcat.tar
     mode: 0776
 

@@ -12,6 +12,14 @@
     force: false
     regenerate: never
 
+- name: Add known_hosts
+  known_hosts:
+    name: "{{ item }}"
+    state: present
+    key: "{{ lookup('pipe', 'ssh-keyscan {{ item }}') }}"
+    hash_host: true
+  with_items: "{{ known_hosts_list }}"
+
 - name: Install pypi packages
   ansible.builtin.pip:
     name: "{{ pip_pkgs }}"

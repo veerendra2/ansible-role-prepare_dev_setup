@@ -48,6 +48,7 @@ brew_pkgs:
   - rtmpdump
   - ruby
   - screen
+  - tmux
   - screenresolution
   - sqlite
   - ssh-copy-id
@@ -92,3 +93,4 @@ brew_cask_apps:
   - vlc
   - jellyfin-media-player
   - zoom
+  - microsoft-azure-storage-explorer
