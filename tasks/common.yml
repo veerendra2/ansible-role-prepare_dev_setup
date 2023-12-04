@@ -22,7 +22,7 @@
 
 - name: Install pypi packages
   ansible.builtin.pip:
-    requirements: requirements.txt
+    requirements: "{{ role_path }}/files/requirements.txt"
     state: latest
     extra_args: "--no-cache-dir --upgrade"
     executable: pip3
@@ -41,7 +41,7 @@
         repo: "{{ item.value }}"
         dest: "{{ user_home }}/projects/{{ item.key }}"
         force: false
-      loop: "{{ lookup('dict', git_projects) }}"
+      loop: "{{ lookup('dict', git_projects, wantlist=True) }}"
       ignore_errors: true
       loop_control:
         label: "{{ item.key }}"

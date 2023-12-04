@@ -18,8 +18,7 @@ An ansible role to install necessary packages and configure my Ubuntu and macOS.
 
 ## Usage
 
-!!! example
-    [veerendra2/prepare-my-machine](https://github.com/veerendra2/prepare-my-machine.git)
+> Example: [veerendra2/prepare-my-machine](https://github.com/veerendra2/prepare-my-machine.git)
 
 ```bash
 ansible-galaxy install veerendra2.prepare_dev_setup
@@ -34,6 +33,7 @@ ansible-galaxy install veerendra2.prepare_dev_setup
 ### Dafault variables
 ```yaml
 ---
+---
 enable_docker_swarm_metrics: false
 enable_docker_live_restore: true
 enable_userns_remap: false
@@ -43,8 +43,6 @@ docker_swarm_advertise_addr: ""
 # clone your git repos
 git_projects:
   my-utils: "https://github.com/veerendra2/my-utils.git"
-  ansible-role-prepare_dev_setup: "https://github.com/veerendra2/ansible-role-prepare_dev_setup.git"
-  prepare-my-machine: "https://github.com/veerendra2/prepare-my-machine.git"
 
 github_username_keys: "https://github.com/veerendra2.keys"
 
