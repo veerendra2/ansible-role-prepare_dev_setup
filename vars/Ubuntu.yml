@@ -4,94 +4,96 @@ cli:
     - ppa:longsleep/golang-backports
   ppa_keys: []
   snap_pkgs:
-    ngrok:
-      classic: false
     kubectl:
       classic: true
-    yq:
+    kubectx:
+      classic: true
+    ngrok:
       classic: false
     terraform:
       classic: true
+    yq:
+      classic: false
+
   pkgs:
-    - systemtap
-    - iotop
-    - blktrace
-    - sysdig
-    - sysstat
-    - linux-tools-common
     - apt-transport-https
-    - ca-certificates
-    - software-properties-common
+    - aria2
     - bcc
-    - bpftrace
-    - ethtool
-    - nmap
-    - socat
-    - schroot
-    - debootstrap
-    - binwalk
     - binutils
+    - binwalk
+    - blktrace
+    - bpftrace
     - bridge-utils
-    - conntrack
-    - python3-dev
-    - python3-pip
-    - screen
-    - tmux
-    - traceroute
-    - ssh
-    - secure-delete
-    - makepasswd
-    - pwgen
-    - tree
-    - macchanger
-    - unzip
-    - p7zip-full
-    - wipe
-    - htop
-    - openssl
-    - pv
-    - qemu-kvm
-    - libvirt-daemon-system
-    - libvirt-clients
-    - tshark
-    - vim
-    - git
-    - vagrant
-    - golang-go
     - build-essential
+    - ca-certificates
+    - conntrack
+    - debootstrap
+    - ethtool
+    - fzf
+    - git
+    - golang-go
+    - htop
+    - iotop
+    - jq
+    - libnetfilter-queue-dev
     - libpcap-dev
     - libusb-1.0-0-dev
-    - libnetfilter-queue-dev
-    - protonvpn-cli
+    - libvirt-clients
+    - libvirt-daemon-system
+    - linux-tools-common
+    - macchanger
+    - makepasswd
+    - nmap
+    - openssl
+    - p7zip-full
     - pastebinit
-    - wireguard
-    - aria2
     - postgresql-client
-    - jq
+    - protonvpn-cli
+    - pv
+    - pwgen
+    - python3-dev
+    - python3-pip
+    - qemu-kvm
+    - schroot
+    - screen
+    - secure-delete
+    - socat
+    - software-properties-common
+    - ssh
+    - sysdig
+    - sysstat
+    - systemtap
+    - tmux
+    - traceroute
+    - tree
+    - tshark
+    - unzip
+    - vagrant
+    - vim
+    - wipe
+    - wireguard
 
 desktop:
   ppas:
     - ppa:wireshark-dev/stable
   ppa_keys: []
   snap_pkgs:
-    spotify:
-      classic: false
     bitwarden:
       classic: false
     code:
       classic: true
-    signal-desktop:
+    pinta:
+      classic: false
+    spotify:
       classic: false
     vlc:
       classic: false
-    pinta:
-      classic: false
   pkgs:
     - filezilla
-    - wireshark
-    - protonvpn
-    - gnome-shell-extension-appindicator
     - gir1.2-appindicator3-0.1
+    - gnome-shell-extension-appindicator
+    - protonvpn
+    - wireshark
 
 protonvpn_deb_pkg_link: https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-2_all.deb
 

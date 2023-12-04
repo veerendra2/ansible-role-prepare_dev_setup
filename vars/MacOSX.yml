@@ -4,6 +4,7 @@ brew_pkgs:
   - awscli
   - bash
   - bash-completion
+  - bitwarden-cli
   - ca-certificates
   - cmatrix
   - coreutils
@@ -11,17 +12,17 @@ brew_pkgs:
   - curl
   - docutils
   - figlet
+  - findutils
+  - fzf
+  - gawk
   - gh
   - git
-  - util-linux
-  - findutils
   - gnu-indent
   - gnu-sed
-  - gnutls
-  - grep
   - gnu-tar
-  - gawk
+  - gnutls
   - go
+  - grep
   - handbrake
   - helm
   - helmfile
@@ -32,7 +33,9 @@ brew_pkgs:
   - iproute2mac
   - jq
   - k9s
+  - kubectx
   - kubernetes-cli
+  - libpq
   - mysql-client
   - ncurses
   - neofetch
@@ -45,10 +48,11 @@ brew_pkgs:
   - python@3.11
   - pyyaml
   - readline
+  - readline
+  - restic
   - rtmpdump
   - ruby
   - screen
-  - tmux
   - screenresolution
   - sqlite
   - ssh-copy-id
@@ -56,44 +60,43 @@ brew_pkgs:
   - telnet
   - terraform
   - terragrunt
+  - tmux
   - tree
   - unzip
+  - util-linux
   - vim
   - watch
   - wget
   - xclip
   - yq
-  - restic
-  - readline
-  - bitwarden-cli
-  - libpq
+
+brew_cask_appdir: /Applications
+
+brew_cask_apps:
+- bitwarden
+- caffeine
+- chromedriver
+- cyberduck
+- docker
+- firefox
+- google-chrome
+- handbrake
+- iterm2
+- jellyfin-media-player
+- microsoft-azure-storage-explorer
+- ngrok
+- postman
+- slack
+- spotify
+- textmate
+- vagrant
+- visual-studio-code
+- vlc
+- whatsapp
+- zoom
 
 brew_link_pkgs:
   - libpq
-
-brew_cask_appdir: /Applications
-brew_cask_apps:
-  - chromedriver
-  - docker
-  - firefox
-  - google-chrome
-  - handbrake
-  - slack
-  - caffeine
-  - visual-studio-code
-  - vagrant
-  - bitwarden
-  - ngrok
-  - spotify
-  - iterm2
-  - textmate
-  - whatsapp
-  - cyberduck
-  - postman
-  - vlc
-  - jellyfin-media-player
-  - zoom
-  - microsoft-azure-storage-explorer
 
 arch_map:
   arm64: "aarch64"
