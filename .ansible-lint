@@ -1,10 +1,10 @@
 skip_list:
-  - 'yaml'
-  - 'role-name'
-  - 'package-latest'
-  - 'latest[git]'
-  - 'no-changed-when'
-  - 'schema[meta]'
-  - 'ignore-errors'
+  - "yaml"
+  - "role-name"
+  - "package-latest"
+  - "latest[git]"
+  - "no-changed-when"
+  - "schema[meta]"
+  - "ignore-errors"
 
 verbosity: 1

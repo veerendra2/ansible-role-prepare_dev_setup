@@ -1,0 +1,10 @@
+setuptools==69.0.2
+jmespath==1.0.1
+requests==2.31.0
+thefuck==3.32
+beautifulsoup4==4.12.2
+youtube_dl==2021.12.17
+ansible==9.0.1
+tldr==3.2.0
+pylint==3.0.2
+ansible-lint==6.22.1

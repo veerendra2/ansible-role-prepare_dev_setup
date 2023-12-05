@@ -1,26 +1,27 @@
+# Ansible Role: `prepare_dev_setup`
+
 [![Release](https://github.com/veerendra2/ansible-role-prepare_dev_setup/actions/workflows/release.yml/badge.svg)](https://github.com/veerendra2/ansible-role-prepare_dev_setup/actions/workflows/release.yml)
 [![Lint and Test](https://github.com/veerendra2/ansible-role-prepare_dev_setup/actions/workflows/tests.yml/badge.svg)](https://github.com/veerendra2/ansible-role-prepare_dev_setup/actions/workflows/tests.yml)
 ![Ansible Role](https://img.shields.io/ansible/role/d/63075)
 ![Ansible Galaxy Role Name](https://img.shields.io/ansible/role/63075)
 ![GitHub release (release name instead of tag name)](https://img.shields.io/github/v/release/veerendra2/ansible-role-prepare_dev_setup?include_prereleases&style=plastic)
-# Ansible Role: `prepare_dev_setup`
-An ansible role to install necessary packages and configure my Ubuntu and MacOS.
+
+An ansible role to install necessary packages and configure my Ubuntu and macOS.
 
 <img src="https://user-images.githubusercontent.com/8393701/248329468-ed036c98-08e7-4ee6-99ef-d5cef2e48a95.png" alt="Windows" width="70"/> <img src="https://user-images.githubusercontent.com/8393701/248331160-ae1cd8f6-7c4b-483b-9799-6b44ed3f30f2.png" alt="Mac" width="74"/>
 
-| Tested on |
-| --------- |
-| `Ubuntu 22.04.3 LTS aarch64` :white_check_mark: |
-| `Ubuntu 22.04.3 LTS x86_64` :white_check_mark: |
-| `macOS 13.5 22G74 arm64` :white_check_mark:|
+| OS                   | Architecture     | Tested             |
+| -------------------- | ---------------- | ------------------ |
+| `Ubuntu 22.04.3 LTS` | `arm64`, `amd64` | :white_check_mark: |
+| `macOS 14.0`         | `arm64`          | :white_check_mark: |
 
 
 ## Usage
 
-> https://github.com/veerendra2/prepare-my-machine.git
+> Example: [veerendra2/prepare-my-machine](https://github.com/veerendra2/prepare-my-machine.git)
 
 ```bash
-$ ansible-galaxy install veerendra2.prepare_dev_setup
+ansible-galaxy install veerendra2.prepare_dev_setup
 ```
 ```yaml
 ---
@@ -41,7 +42,6 @@ docker_swarm_advertise_addr: ""
 # clone your git repos
 git_projects:
   my-utils: "https://github.com/veerendra2/my-utils.git"
-  raspberrypi-homeserver: "https://github.com/veerendra2/raspberrypi-homeserver.git"
 
 github_username_keys: "https://github.com/veerendra2.keys"
 
@@ -50,4 +50,9 @@ install_dotfiles: true
 
 # install bettercap [https://www.bettercap.org/]
 install_bettercap: true
+
+# add hosts to ~/.ssh/known_hosts
+known_hosts_list:
+  - github.com
+  - gitlab.com
 ```

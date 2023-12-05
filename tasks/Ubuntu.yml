@@ -5,7 +5,8 @@
 
 - name: Merge desktop packages list
   ansible.builtin.set_fact:
-    cli: "{{ cli | ansible.builtin.combine(desktop, list_merge='append', recursive=true) }}"
+    cli: "{{ cli | ansible.builtin.combine(desktop, list_merge='append',
+      recursive=true) }}"
   when: "'ubuntu-desktop' in ansible_facts.packages"
 
 - name: Install packages
@@ -34,6 +35,7 @@
       ansible.builtin.apt:
         upgrade: true
         update_cache: true
+        cache_valid_time: 86400
 
     - name: Install packages
       ansible.builtin.apt:

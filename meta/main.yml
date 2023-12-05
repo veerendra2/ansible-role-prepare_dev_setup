@@ -13,7 +13,7 @@ galaxy_info:
         - jammy
     - name: MacOSX
       versions:
-        - '13.5'
+        - "10.15"
   galaxy_tags:
     - system
     - docker
