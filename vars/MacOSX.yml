@@ -94,6 +94,7 @@ brew_cask_apps:
   - vlc
   - whatsapp
   - zoom
+  - stats
 
 brew_link_pkgs:
   - libpq

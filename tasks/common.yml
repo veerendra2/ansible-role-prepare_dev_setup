@@ -3,8 +3,8 @@
   ansible.posix.authorized_key:
     user: "{{ user_name }}"
     state: present
-    key: "{{ github_username_keys }}"
-  when: github_username_keys != ""
+    key: "{{ public_keys_url }}"
+  when: public_keys_url != ""
 
 - name: Generate ssh key pair
   community.crypto.openssh_keypair:
@@ -20,9 +20,14 @@
     hash_host: true
   with_items: "{{ known_hosts_list }}"
 
+- name: Copy requirements.txt to /tmp
+  ansible.buildin.copy:
+    src: requirements.txt
+    dest: /tmp/requirements.txt
+
 - name: Install pypi packages
   ansible.builtin.pip:
-    requirements: "{{ role_path }}/files/requirements.txt"
+    requirements: /tmp/requirements.txt
     state: latest
     extra_args: "--no-cache-dir --upgrade"
     executable: pip3

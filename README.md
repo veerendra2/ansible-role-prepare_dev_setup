@@ -33,17 +33,19 @@ ansible-galaxy install veerendra2.prepare_dev_setup
 ### Dafault variables
 ```yaml
 ---
+# docker configuration for Ubuntu
+install_docker: false
 enable_docker_swarm_metrics: false
-enable_docker_live_restore: true
+enable_docker_live_restore: false
 enable_userns_remap: false
 enable_docker_swarm_mode: false
 docker_swarm_advertise_addr: ""
 
 # clone your git repos
-git_projects:
-  my-utils: "https://github.com/veerendra2/my-utils.git"
+git_projects: []
 
-github_username_keys: "https://github.com/veerendra2.keys"
+# authorized keys from url (example; https://github.com/veerendra2.keys)
+public_keys_url: ""
 
 # install dotfiles [https://github.com/veerendra2/dotfiles.git]
 install_dotfiles: true
