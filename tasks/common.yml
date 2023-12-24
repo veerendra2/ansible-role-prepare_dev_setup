@@ -3,8 +3,8 @@
   ansible.posix.authorized_key:
     user: "{{ user_name }}"
     state: present
-    key: "{{ github_username_keys }}"
-  when: github_username_keys != ""
+    key: "{{ public_keys_url }}"
+  when: public_keys_url != ""
 
 - name: Generate ssh key pair
   community.crypto.openssh_keypair:

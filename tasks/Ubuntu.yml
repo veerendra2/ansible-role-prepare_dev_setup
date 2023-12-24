@@ -61,7 +61,7 @@
   ansible.builtin.include_tasks: docker.yml
   vars:
     ansible_become: true
-  when: "'docker-ce-cli' not in ansible_facts.packages"
+  when: "install_docker and 'docker-ce-cli' not in ansible_facts.packages"
 
 - name: Install Bettercap
   when: install_bettercap

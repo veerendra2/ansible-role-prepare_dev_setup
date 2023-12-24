@@ -1,3 +1,5 @@
+# !! this docker installation task file is DEPRECATED!!
+# use "geerlingguy.docker" ansible role
 ---
 - name: Download get-docker.sh script
   ansible.builtin.get_url:
