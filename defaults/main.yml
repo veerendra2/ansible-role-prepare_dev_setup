@@ -1,4 +1,6 @@
 ---
+# docker configuration in Ubuntu
+install_docker: false # use geerlingguy.docker
 enable_docker_swarm_metrics: false
 enable_docker_live_restore: true
 enable_userns_remap: false
