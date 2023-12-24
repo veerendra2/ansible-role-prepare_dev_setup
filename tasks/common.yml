@@ -20,7 +20,7 @@
     hash_host: true
   with_items: "{{ known_hosts_list }}"
 
-- name: Copy requirements.txt
+- name: Copy requirements.txt to /tmp
   ansible.buildin.copy:
     src: requirements.txt
     dest: /tmp/requirements.txt
