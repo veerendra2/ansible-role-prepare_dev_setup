@@ -7,4 +7,4 @@ youtube_dl==2021.12.17
 ansible==9.1.0
 tldr==3.2.0
 pylint==3.0.3
-ansible-lint==6.22.1
+ansible-lint==6.22.2
