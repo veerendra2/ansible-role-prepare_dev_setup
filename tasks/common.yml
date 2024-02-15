@@ -21,7 +21,7 @@
   with_items: "{{ known_hosts_list }}"
 
 - name: Copy requirements.txt to /tmp
-  ansible.buildin.copy:
+  ansible.builtin.copy:
     src: requirements.txt
     dest: /tmp/requirements.txt
 
