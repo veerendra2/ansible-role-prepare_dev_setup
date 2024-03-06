@@ -69,6 +69,7 @@ brew_pkgs:
   - wget
   - xclip
   - yq
+  - moreutils
 
 brew_cask_appdir: /Applications
 
