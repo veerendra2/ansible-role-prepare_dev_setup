@@ -17,15 +17,15 @@ cli:
 
   pkgs:
     - apt-transport-https
-    - aria2
+    - software-properties-common
+    - build-essential
+    - ca-certificates
     - bcc
     - binutils
     - binwalk
     - blktrace
     - bpftrace
     - bridge-utils
-    - build-essential
-    - ca-certificates
     - conntrack
     - debootstrap
     - ethtool
@@ -43,6 +43,7 @@ cli:
     - linux-tools-common
     - macchanger
     - makepasswd
+    - pwgen
     - nmap
     - openssl
     - p7zip-full
@@ -50,20 +51,18 @@ cli:
     - postgresql-client
     - protonvpn-cli
     - pv
-    - pwgen
     - python3-dev
     - python3-pip
     - qemu-kvm
     - schroot
     - screen
+    - tmux
     - secure-delete
     - socat
-    - software-properties-common
     - ssh
     - sysdig
     - sysstat
     - systemtap
-    - tmux
     - traceroute
     - tree
     - tshark
@@ -72,6 +71,7 @@ cli:
     - vim
     - wipe
     - wireguard
+    - moreutils
 
 desktop:
   ppas:
