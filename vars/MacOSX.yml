@@ -70,6 +70,7 @@ brew_pkgs:
   - xclip
   - yq
   - moreutils
+  - rclone
 
 brew_cask_appdir: /Applications
 

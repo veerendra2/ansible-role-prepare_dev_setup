@@ -73,6 +73,7 @@ cli:
     - wireguard
     - moreutils
     - smartmontools
+    - rclone
 
 desktop:
   ppas:
