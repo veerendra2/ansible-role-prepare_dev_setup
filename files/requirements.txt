@@ -1,6 +1,6 @@
 setuptools==70.1.1
 jmespath==1.0.1
-requests==2.31.0
+requests==2.32.3
 thefuck==3.32
 beautifulsoup4==4.12.3
 youtube_dl==2021.12.17
