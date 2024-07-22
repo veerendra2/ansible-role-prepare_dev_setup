@@ -58,7 +58,7 @@
     path: ~/.config/direnv/direnv.toml
     section: global
     option: load_dotenv
-    value: true
+    value: "true"
     mode: "0600"
     backup: false
 
