@@ -20,17 +20,12 @@
     hash_host: true
   with_items: "{{ known_hosts_list }}"
 
-- name: Copy requirements.txt to /tmp
-  ansible.builtin.copy:
-    src: requirements.txt
-    dest: /tmp/requirements.txt
-
 - name: Install pypi packages
-  ansible.builtin.pip:
-    requirements: /tmp/requirements.txt
-    state: latest
+  pip:
+    name: "{{ item.name | default(item) }}"
     extra_args: "--no-cache-dir --upgrade"
     executable: pip3
+  loop: "{{ pip_install_packages }}"
 
 - name: Create projects directory
   ansible.builtin.file:
@@ -57,6 +52,15 @@
         dest: "{{ user_home }}/projects/personal.code-workspace"
         group: "{{ user_name }}"
         mode: 0640
+
+- name: Create ~/.config/direnv/direnv.toml
+  community.general.ini_file:
+    path: ~/.config/direnv/direnv.toml
+    section: global
+    option: load_dotenv
+    value: true
+    mode: "0600"
+    backup: false
 
 - name: Import dotfiles tasks
   ansible.builtin.import_tasks: dotfiles.yml

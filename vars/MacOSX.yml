@@ -10,6 +10,7 @@ brew_pkgs:
   - coreutils
   - cowsay
   - curl
+  - direnv
   - docutils
   - figlet
   - findutils
@@ -36,6 +37,7 @@ brew_pkgs:
   - kubectx
   - kubernetes-cli
   - libpq
+  - moreutils
   - mysql-client
   - ncurses
   - neofetch
@@ -47,7 +49,8 @@ brew_pkgs:
   - pv
   - python@3.11
   - pyyaml
-  - readline
+  - qrcp
+  - rclone
   - readline
   - restic
   - rtmpdump
@@ -59,7 +62,6 @@ brew_pkgs:
   - stow
   - telnet
   - terraform
-  - terragrunt
   - tmux
   - tree
   - unzip
@@ -67,10 +69,7 @@ brew_pkgs:
   - vim
   - watch
   - wget
-  - xclip
   - yq
-  - moreutils
-  - rclone
 
 brew_cask_appdir: /Applications
 
@@ -85,18 +84,17 @@ brew_cask_apps:
   - handbrake
   - iterm2
   - jellyfin-media-player
-  - microsoft-azure-storage-explorer
   - ngrok
   - postman
   - slack
   - spotify
+  - stats
   - textmate
   - vagrant
   - visual-studio-code
   - vlc
   - whatsapp
   - zoom
-  - stats
 
 brew_link_pkgs:
   - libpq
