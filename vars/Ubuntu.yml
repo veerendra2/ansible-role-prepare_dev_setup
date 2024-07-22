@@ -14,20 +14,19 @@ cli:
       classic: true
     yq:
       classic: false
-
   pkgs:
     - apt-transport-https
-    - software-properties-common
-    - build-essential
-    - ca-certificates
     - bcc
     - binutils
     - binwalk
     - blktrace
     - bpftrace
     - bridge-utils
+    - build-essential
+    - ca-certificates
     - conntrack
     - debootstrap
+    - direnv
     - ethtool
     - fzf
     - git
@@ -43,7 +42,7 @@ cli:
     - linux-tools-common
     - macchanger
     - makepasswd
-    - pwgen
+    - moreutils
     - nmap
     - openssl
     - p7zip-full
@@ -51,18 +50,21 @@ cli:
     - postgresql-client
     - protonvpn-cli
     - pv
+    - pwgen
     - python3-dev
     - python3-pip
     - qemu-kvm
+    - rclone
     - schroot
     - screen
-    - tmux
     - secure-delete
+    - smartmontools
     - socat
     - ssh
     - sysdig
     - sysstat
     - systemtap
+    - tmux
     - traceroute
     - tree
     - tshark
@@ -71,9 +73,6 @@ cli:
     - vim
     - wipe
     - wireguard
-    - moreutils
-    - smartmontools
-    - rclone
 
 desktop:
   ppas:
