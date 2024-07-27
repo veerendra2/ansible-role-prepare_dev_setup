@@ -48,7 +48,6 @@ cli:
     - p7zip-full
     - pastebinit
     - postgresql-client
-    - protonvpn-cli
     - pv
     - pwgen
     - python3-dev
@@ -91,9 +90,10 @@ desktop:
       classic: false
   pkgs:
     - filezilla
-    - gir1.2-appindicator3-0.1
+    - gir1.2-ayatanaappindicator3-0.1
+    - libayatana-appindicator3-1
     - gnome-shell-extension-appindicator
-    - protonvpn
+    - proton-vpn-gnome-desktop
     - wireshark
 
 protonvpn_deb_pkg_link: https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-3_all.deb

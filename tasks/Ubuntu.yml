@@ -30,6 +30,7 @@
     - name: Install protonvpn deb package
       ansible.builtin.apt:
         deb: "{{ protonvpn_deb_pkg_link }}"
+      when: "'ubuntu-desktop' in ansible_facts.packages"
 
     - name: Run update
       ansible.builtin.apt:
