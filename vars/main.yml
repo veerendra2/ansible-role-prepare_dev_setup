@@ -11,3 +11,4 @@ pip_install_packages:
   - youtube_dl
   - ansible
   - tldr
+  - protonvpn-cli

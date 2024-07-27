@@ -16,7 +16,7 @@
       ansible.builtin.apt_key:
         url: "{{ item }}"
         state: present
-      with_items: "{{ cli.ppa_keys }}"
+      loop: "{{ cli.ppa_keys }}"
       when: cli.ppa_keys
 
     - name: Add ppa
@@ -24,12 +24,13 @@
         repo: "{{ item }}"
         state: present
         update_cache: false
-      with_items: "{{ cli.ppas }}"
+      loop: "{{ cli.ppas }}"
       when: cli.ppas
 
     - name: Install protonvpn deb package
       ansible.builtin.apt:
         deb: "{{ protonvpn_deb_pkg_link }}"
+      when: "'ubuntu-desktop' in ansible_facts.packages"
 
     - name: Run update
       ansible.builtin.apt:
@@ -62,21 +63,6 @@
   vars:
     ansible_become: true
   when: "install_docker and 'docker-ce-cli' not in ansible_facts.packages"
-
-- name: Install Bettercap
-  when: install_bettercap
-  block:
-    - name: Check bettercap installed
-      ansible.builtin.command: bettercap --version
-      register: output
-      changed_when: false
-
-    - name: Display bettercap version
-      ansible.builtin.debug:
-        msg: "{{ output.stdout }}"
-  rescue:
-    - name: Include bettercap tasks
-      ansible.builtin.include_tasks: bettercap.yml
 
 - name: Check nvidia pci
   ansible.builtin.shell: |

@@ -1,11 +1,15 @@
 ---
-# docker configuration for Ubuntu
+# below docker configuration is DEPRECATED.
+# use geerlingguy.docker
 install_docker: false
 enable_docker_swarm_metrics: false
 enable_docker_live_restore: false
 enable_userns_remap: false
 enable_docker_swarm_mode: false
 docker_swarm_advertise_addr: ""
+
+# docker images to be pulled
+docker_images: []
 
 # clone your git repos
 git_projects: []
@@ -15,9 +19,6 @@ public_keys_url: ""
 
 # install dotfiles [https://github.com/veerendra2/dotfiles.git]
 install_dotfiles: true
-
-# install bettercap [https://www.bettercap.org/]
-install_bettercap: true
 
 # add hosts to ~/.ssh/known_hosts
 known_hosts_list:

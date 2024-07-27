@@ -18,7 +18,7 @@
     state: present
     key: "{{ lookup('pipe', 'ssh-keyscan {{ item }}') }}"
     hash_host: true
-  with_items: "{{ known_hosts_list }}"
+  loop: "{{ known_hosts_list }}"
 
 - name: Install pypi packages
   pip:
@@ -61,6 +61,18 @@
     value: "true"
     mode: "0600"
     backup: false
+
+- name: Check if docker is installed
+  command: docker --version
+  register: output
+  ignore_errors: true
+
+- name: Pull docker images
+  docker_image:
+    name: "{{ item }}"
+    source: pull
+  loop: "{{ docker_images }}"
+  when: output.failed
 
 - name: Import dotfiles tasks
   ansible.builtin.import_tasks: dotfiles.yml
