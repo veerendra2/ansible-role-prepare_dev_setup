@@ -1,11 +1,11 @@
 ---
 # below docker configuration is DEPRECATED. use geerlingguy.docker
-install_docker: false
-enable_docker_swarm_metrics: false
-enable_docker_live_restore: false
-enable_userns_remap: false
-enable_docker_swarm_mode: false
-docker_swarm_advertise_addr: ""
+# install_docker: false
+# enable_docker_swarm_metrics: false
+# enable_docker_live_restore: false
+# enable_userns_remap: false
+# enable_docker_swarm_mode: false
+# docker_swarm_advertise_addr: ""
 
 # docker images to be pulled
 docker_images: []

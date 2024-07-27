@@ -16,7 +16,7 @@
       ansible.builtin.apt_key:
         url: "{{ item }}"
         state: present
-      with_items: "{{ cli.ppa_keys }}"
+      loop: "{{ cli.ppa_keys }}"
       when: cli.ppa_keys
 
     - name: Add ppa
@@ -24,7 +24,7 @@
         repo: "{{ item }}"
         state: present
         update_cache: false
-      with_items: "{{ cli.ppas }}"
+      loop: "{{ cli.ppas }}"
       when: cli.ppas
 
     - name: Install protonvpn deb package
