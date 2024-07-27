@@ -64,21 +64,6 @@
     ansible_become: true
   when: "install_docker and 'docker-ce-cli' not in ansible_facts.packages"
 
-- name: Install Bettercap
-  when: install_bettercap
-  block:
-    - name: Check bettercap installed
-      ansible.builtin.command: bettercap --version
-      register: output
-      changed_when: false
-
-    - name: Display bettercap version
-      ansible.builtin.debug:
-        msg: "{{ output.stdout }}"
-  rescue:
-    - name: Include bettercap tasks
-      ansible.builtin.include_tasks: bettercap.yml
-
 - name: Check nvidia pci
   ansible.builtin.shell: |
     lspci | grep -i --color 'vga\|3d\|2d' | grep -i NVIDIA

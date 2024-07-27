@@ -17,6 +17,7 @@ cli:
   pkgs:
     - apt-transport-https
     - bcc
+    - bettercap
     - binutils
     - binwalk
     - blktrace
