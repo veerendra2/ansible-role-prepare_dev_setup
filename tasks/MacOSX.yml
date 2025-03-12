@@ -46,14 +46,6 @@
     install_options:
       - "appdir={{ brew_cask_appdir }}"
 
-- name: Install virtualbox for x86_64
-  community.general.homebrew_cask:
-    name: virtualbox
-    state: present
-    install_options:
-      - "appdir={{ brew_cask_appdir }}"
-  when: ansible_architecture == "x86_64"
-
 - name: Download get-pip.py script
   ansible.builtin.get_url:
     url: https://bootstrap.pypa.io/get-pip.py

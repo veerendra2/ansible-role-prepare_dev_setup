@@ -3,12 +3,16 @@ user_home: "{{ ansible_env.HOME }}"
 user_name: "{{ ansible_env.USER }}"
 
 pip_install_packages:
-  - setuptools
-  - jmespath
-  - requests
-  - thefuck
-  - beautifulsoup4
-  - youtube_dl
   - ansible
+  - beautifulsoup4
+  - jmespath
+  - loguru
+  - requests
+  - setuptools
+  - thefuck
   - tldr
-  - protonvpn-cli
+  - youtube_dl
+
+arch_map:
+  arm64: "aarch64"
+  x86_64: "x86_64"

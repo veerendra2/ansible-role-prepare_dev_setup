@@ -33,14 +33,6 @@ ansible-galaxy install veerendra2.prepare_dev_setup
 ### Dafault variables
 ```yaml
 ---
-# docker configuration for Ubuntu
-install_docker: false
-enable_docker_swarm_metrics: false
-enable_docker_live_restore: false
-enable_userns_remap: false
-enable_docker_swarm_mode: false
-docker_swarm_advertise_addr: ""
-
 # clone your git repos
 git_projects: []
 
