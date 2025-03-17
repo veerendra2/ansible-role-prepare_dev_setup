@@ -88,6 +88,7 @@ brew_cask_apps:
   - ngrok
   - obsidian
   - postman
+  - protonvpn
   - raycast
   - slack
   - spotify
