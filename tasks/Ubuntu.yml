@@ -58,12 +58,6 @@
       ansible.builtin.apt:
         autoremove: true
 
-- name: Include docker tasks
-  ansible.builtin.include_tasks: docker.yml
-  vars:
-    ansible_become: true
-  when: "install_docker and 'docker-ce-cli' not in ansible_facts.packages"
-
 - name: Check nvidia pci
   ansible.builtin.shell: |
     lspci | grep -i --color 'vga\|3d\|2d' | grep -i NVIDIA

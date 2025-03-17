@@ -2,7 +2,7 @@
 # docker images to be pulled
 docker_images:
   - alpine
-  - busybox
+  - veerendra2/utils:latest
 
 # clone git repos
 git_projects: []
