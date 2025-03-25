@@ -15,7 +15,6 @@ An ansible role to install necessary packages and configure my Ubuntu and macOS.
 | `Ubuntu 22.04.3 LTS` | `arm64`, `amd64` | :white_check_mark: |
 | `macOS 14.0`         | `arm64`          | :white_check_mark: |
 
-
 ## Usage
 
 > Example: [veerendra2/prepare-my-machine](https://github.com/veerendra2/prepare-my-machine.git)
@@ -23,6 +22,7 @@ An ansible role to install necessary packages and configure my Ubuntu and macOS.
 ```bash
 ansible-galaxy install veerendra2.prepare_dev_setup
 ```
+
 ```yaml
 ---
 - hosts: all
@@ -30,20 +30,24 @@ ansible-galaxy install veerendra2.prepare_dev_setup
   roles:
     - veerendra2.prepare_dev_setup
 ```
+
 ### Dafault variables
+
 ```yaml
 ---
-# clone your git repos
+# docker images to be pulled
+docker_images:
+  - alpine
+  - veerendra2/utils:latest
+
+# clone git repos
 git_projects: []
 
-# authorized keys from url (example; https://github.com/veerendra2.keys)
-public_keys_url: ""
+# authorized keys from url
+public_keys_url: https://github.com/veerendra2.keys
 
 # install dotfiles [https://github.com/veerendra2/dotfiles.git]
 install_dotfiles: true
-
-# install bettercap [https://www.bettercap.org/]
-install_bettercap: true
 
 # add hosts to ~/.ssh/known_hosts
 known_hosts_list:

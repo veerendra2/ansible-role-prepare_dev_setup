@@ -2,7 +2,7 @@
 cli:
   ppas:
     - ppa:longsleep/golang-backports
-    - "deb [signed-by=/etc/apt/trusted.gpg.d/kopia-keyring.gpg] http://packages.kopia.io/apt/ stable main"
+    - "deb http://packages.kopia.io/apt/ stable main"
   ppa_keys:
     - https://kopia.io/signing-key
   snap_pkgs:
@@ -72,7 +72,6 @@ cli:
     - tree
     - tshark
     - unzip
-    - vagrant
     - vim
     - wipe
     - wireguard
