@@ -23,13 +23,13 @@ brew_pkgs:
   - gnu-tar
   - gnutls
   - go
+  - goreleaser
   - grep
   - handbrake
   - helm
   - helmfile
   - htop
   - httpie
-  - hugo
   - iperf
   - iproute2mac
   - jq
@@ -47,7 +47,7 @@ brew_pkgs:
   - perl
   - php
   - pv
-  - python@3.11
+  - python@3.12
   - pyyaml
   - qrcp
   - rclone
@@ -80,25 +80,25 @@ brew_cask_apps:
   - cyberduck
   - docker
   - firefox
+  - ghostty
   - google-chrome
   - handbrake
   - iterm2
   - jellyfin-media-player
   - ngrok
+  - obsidian
   - postman
+  - protonvpn
+  - raycast
   - slack
   - spotify
   - stats
   - textmate
   - vagrant
+  - virtualbox
   - visual-studio-code
   - vlc
   - whatsapp
-  - zoom
 
 brew_link_pkgs:
   - libpq
-
-arch_map:
-  arm64: "aarch64"
-  x86_64: "x86_64"

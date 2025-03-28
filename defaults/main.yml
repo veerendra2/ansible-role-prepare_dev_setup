@@ -1,21 +1,14 @@
 ---
-# below docker configuration is DEPRECATED.
-# use geerlingguy.docker
-install_docker: false
-enable_docker_swarm_metrics: false
-enable_docker_live_restore: false
-enable_userns_remap: false
-enable_docker_swarm_mode: false
-docker_swarm_advertise_addr: ""
-
 # docker images to be pulled
-docker_images: []
+docker_images:
+  - busybox:latest
+  - veerendra2/utils:latest
 
-# clone your git repos
-git_projects: []
+# clone git repos
+git_projects: {}
 
-# authorized keys from url (example; https://github.com/veerendra2.keys)
-public_keys_url: ""
+# authorized keys from url
+public_keys_url: https://github.com/veerendra2.keys
 
 # install dotfiles [https://github.com/veerendra2/dotfiles.git]
 install_dotfiles: true

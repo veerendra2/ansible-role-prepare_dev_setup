@@ -17,7 +17,6 @@
         url: "{{ item }}"
         state: present
       loop: "{{ cli.ppa_keys }}"
-      when: cli.ppa_keys
 
     - name: Add ppa
       ansible.builtin.apt_repository:
@@ -25,7 +24,6 @@
         state: present
         update_cache: false
       loop: "{{ cli.ppas }}"
-      when: cli.ppas
 
     - name: Install protonvpn deb package
       ansible.builtin.apt:
@@ -49,7 +47,8 @@
     - name: Install snap packages
       community.general.snap:
         name: "{{ item.key }}"
-        classic: "{{ item.value.classic }}"
+        classic: "{{ item.value.classic | default(false) }}"
+        dangerous: "{{ item.value.dangerous | default(false) }}"
       loop: "{{ lookup('dict', cli.snap_pkgs) }}"
       loop_control:
         label: "{{ item.key }}"
@@ -57,12 +56,6 @@
     - name: Run autoremove
       ansible.builtin.apt:
         autoremove: true
-
-- name: Include docker tasks
-  ansible.builtin.include_tasks: docker.yml
-  vars:
-    ansible_become: true
-  when: "install_docker and 'docker-ce-cli' not in ansible_facts.packages"
 
 - name: Check nvidia pci
   ansible.builtin.shell: |

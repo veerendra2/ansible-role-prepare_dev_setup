@@ -2,7 +2,9 @@
 cli:
   ppas:
     - ppa:longsleep/golang-backports
-  ppa_keys: []
+    - "deb http://packages.kopia.io/apt/ stable main"
+  ppa_keys:
+    - https://kopia.io/signing-key
   snap_pkgs:
     kubectl:
       classic: true
@@ -35,6 +37,7 @@ cli:
     - htop
     - iotop
     - jq
+    - kopia
     - libnetfilter-queue-dev
     - libpcap-dev
     - libusb-1.0-0-dev
@@ -69,7 +72,6 @@ cli:
     - tree
     - tshark
     - unzip
-    - vagrant
     - vim
     - wipe
     - wireguard
@@ -89,16 +91,17 @@ desktop:
       classic: false
     vlc:
       classic: false
+    ghostty:
+      classic: true
+    obsidian:
+      classic: true
+      dangerous: true
   pkgs:
     - filezilla
     - gir1.2-ayatanaappindicator3-0.1
-    - libayatana-appindicator3-1
     - gnome-shell-extension-appindicator
+    - kopia-ui
+    - libayatana-appindicator3-1
     - proton-vpn-gnome-desktop
-    - wireshark
 
-protonvpn_deb_pkg_link: https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-3_all.deb
-
-arch_map:
-  arm64: "aarch64"
-  x86_64: "x86_64"
+protonvpn_deb_pkg_link: https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb

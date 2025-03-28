@@ -1,8 +1,11 @@
 ---
 version: 2
 updates:
-  - package-ecosystem: pip
-    directory: /files/
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
-      day: sunday
-      interval: weekly
+      interval: "monthly"
+    groups:
+      workflow-dependencies:
+        patterns:
+          - "*"
