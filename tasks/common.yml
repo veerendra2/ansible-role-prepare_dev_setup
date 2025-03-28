@@ -72,7 +72,7 @@
     name: "{{ item }}"
     source: pull
   loop: "{{ docker_images }}"
-  when: not output.failed
+  when: output.rc == 0
 
 - name: Import dotfiles tasks
   ansible.builtin.import_tasks: dotfiles.yml

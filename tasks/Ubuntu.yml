@@ -47,7 +47,8 @@
     - name: Install snap packages
       community.general.snap:
         name: "{{ item.key }}"
-        classic: "{{ item.value.classic }}"
+        classic: "{{ item.value.classic | default(false) }}"
+        dangerous: "{{ item.value.dangerous | default(false) }}"
       loop: "{{ lookup('dict', cli.snap_pkgs) }}"
       loop_control:
         label: "{{ item.key }}"

@@ -91,6 +91,11 @@ desktop:
       classic: false
     vlc:
       classic: false
+    ghostty:
+      classic: true
+    obsidian:
+      classic: true
+      dangerous: true
   pkgs:
     - filezilla
     - gir1.2-ayatanaappindicator3-0.1
