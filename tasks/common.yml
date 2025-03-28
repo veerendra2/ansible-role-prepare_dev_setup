@@ -16,14 +16,13 @@
   ansible.builtin.known_hosts:
     name: "{{ item }}"
     state: present
-    key: "{{ lookup('pipe', 'ssh-keyscan {{ item }}') }}"
-    hash_host: true
+    key: "{{ lookup('pipe', 'ssh-keyscan ' + item) }}"
   loop: "{{ known_hosts_list }}"
 
 - name: Install pypi packages
   pip:
     name: "{{ item.name | default(item) }}"
-    extra_args: "--no-cache-dir --upgrade"
+    extra_args: "--no-cache-dir --upgrade --break-system-packages"
     executable: pip3
   loop: "{{ pip_install_packages }}"
 
@@ -63,7 +62,7 @@
     backup: false
 
 - name: Check if docker is installed
-  command: docker --version
+  shell: docker --version
   register: output
   ignore_errors: true
 
@@ -72,6 +71,7 @@
     name: "{{ item }}"
     source: pull
   loop: "{{ docker_images }}"
+  ignore_errors: true
   when: output.rc == 0
 
 - name: Import dotfiles tasks

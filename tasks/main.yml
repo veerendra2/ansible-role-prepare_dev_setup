@@ -1,9 +1,9 @@
 ---
-- name: Include OS-specific variables
-  ansible.builtin.include_vars: "{{ ansible_distribution }}.yml"
+# - name: Include OS-specific variables
+#   ansible.builtin.include_vars: "{{ ansible_distribution }}.yml"
 
-- name: Include OS-specific tasks
-  ansible.builtin.include_tasks: "{{ ansible_distribution }}.yml"
+# - name: Include OS-specific tasks
+#   ansible.builtin.include_tasks: "{{ ansible_distribution }}.yml"
 
 - name: Include common tasks
   ansible.builtin.include_tasks: common.yml

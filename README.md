@@ -13,7 +13,7 @@ An ansible role to install necessary packages and configure my Ubuntu and macOS.
 | OS                   | Architecture     | Tested             |
 | -------------------- | ---------------- | ------------------ |
 | `Ubuntu 22.04.3 LTS` | `arm64`, `amd64` | :white_check_mark: |
-| `macOS 14.0`         | `arm64`          | :white_check_mark: |
+| `15.3.2`             | `arm64`          | :white_check_mark: |
 
 ## Usage
 

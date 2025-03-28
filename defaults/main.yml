@@ -5,7 +5,7 @@ docker_images:
   - veerendra2/utils:latest
 
 # clone git repos
-git_projects: []
+git_projects: {}
 
 # authorized keys from url
 public_keys_url: https://github.com/veerendra2.keys
