@@ -46,6 +46,7 @@ brew_pkgs:
   - openssl
   - perl
   - php
+  - pipx
   - pv
   - python@3.12
   - pyyaml
