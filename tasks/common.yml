@@ -74,6 +74,14 @@
   ignore_errors: true
   when: output.rc == 0
 
-- name: Import dotfiles tasks
-  ansible.builtin.import_tasks: dotfiles.yml
-  when: install_dotfiles
+- name: Clone dotfiles repository
+  ansible.builtin.git:
+    repo: https://github.com/veerendra2/dotfiles.git
+    dest: "{{ user_home }}/projects/dotfiles"
+    force: false
+  ignore_errors: true
+
+- name: Run setup.sh to install dotfiles
+  shell: setup.sh
+  args:
+    chdir: "{{ user_home }}/projects/dotfiles"

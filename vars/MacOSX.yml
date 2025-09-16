@@ -94,6 +94,7 @@ brew_cask_apps:
   - slack
   - spotify
   - stats
+  - starship
   - textmate
   - vagrant
   - virtualbox
