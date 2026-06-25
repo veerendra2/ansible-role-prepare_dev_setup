@@ -63,6 +63,7 @@ cli:
     - screen
     - secure-delete
     - smartmontools
+    - stow
     - socat
     - ssh
     - sysdig
